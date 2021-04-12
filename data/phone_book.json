@@ -1,0 +1,58 @@
+[
+	{
+ 	"name":   "AKG",
+    	"phones": [ "N700NC MK2", "N700NC MK2 Wired"]
+ 	},  	
+	{
+   	"name":   "Audeze",
+    	"phones": [ "Sine","Sine CAL Pads", "Sine Aviator Pads" ]
+	},
+	{
+   	"name":   "Denon",
+    	"phones": [ "D5200" ]
+	},
+	{
+   	"name":   "Drop",
+    	"phones": [ "Panda" ]
+	},
+	{
+   	"name":   "Emu",
+    	"phones": [ "Rosewood" ]
+	},
+	{
+   	"name":   "Gold Planar",
+    	"phones": [ "GL2000" ]
+	},
+	{
+   	"name":   "HarmonicDyne",
+    	"phones": [ "Zeus" ]
+	},
+	{
+   	"name":   "Hifiman",
+    	"phones": [ "Arya", "HE6SE V2", "Susvara" ]
+  	},
+	{
+   	"name":   "Koss",
+    	"phones": [ "KPH-30i Yaxi", "KSC-35 Yaxi", "KSC-75 Yaxi", "PortaPro Yaxi" ]
+	},
+	{
+   	"name":   "Meze",
+    	"phones": [ "Empyrean Leather", "Empyrean Suede" ]
+	},
+	{
+   	"name":   "PhilPhone",
+    	"phones": [ "3" ]
+	},
+	{
+   	"name":   "Sennheiser",
+    	"phones": [ "HD600" ]
+	},
+	{
+   	"name":   "Sony",
+    	"phones": [ "MDR-CD900ST" ]
+	},
+	{
+   	"name":   "ZMF",
+    	"phones": [ "Verite - BE2", "Verite - BE2 Hybrid", "Verite - Perf Suede", "Verite - UP Leather" ]
+	}
+]
