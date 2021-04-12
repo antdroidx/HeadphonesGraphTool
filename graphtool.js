@@ -958,7 +958,7 @@ function setHover(elt, h) {
 }
 
 let ifURL = typeof share_url !== "undefined" && share_url;
-let baseTitle = typeof page_title !== "undefined" ? page_title : "CrinGraph";
+let baseTitle = typeof page_title !== "undefined" ? page_title : "Graph Comparison Tool";
 let baseURL;  // Set by setInitPhones
 function addPhonesToUrl() {
     let title = baseTitle, url = baseURL,
