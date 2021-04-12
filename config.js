@@ -18,7 +18,7 @@ function watermark(svg) {
 const max_channel_imbalance = 5;
 
 const targets = [
-    { type:"Neutral"   , files:["Antdroid","Harman 2013"] },
+    { type:"Neutral"   , files:["Harman In-Room","Harman 2013"] },
     { type:"Preference", files:["Antdroid","Harman 2018"] }
 ];
 
