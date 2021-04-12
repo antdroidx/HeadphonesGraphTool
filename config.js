@@ -9,7 +9,7 @@ function watermark(svg) {
         .attr("transform", "translate("+(pad.l+W/2)+","+(pad.t+H/2-20)+")")
         .attr("opacity",0.2);
   wm.append("image")
-      .attrs({x:-125, y:0, width:250, height:250, "xlink:href":"ad.png"});
+      .attrs({x:-125, y:0, width:250, height:250, "xlink:href":"logo.png"});
    wm.append("text")
        .attrs({x:250, y:170, "font-size":16, "font-family":"tahoma", "text-anchor":"middle"})
         .text("http://www.AudioDiscourse.com");
