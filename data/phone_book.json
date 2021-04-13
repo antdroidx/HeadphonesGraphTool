@@ -2,7 +2,7 @@
 	{
  	"name":   "AKG",
     	"phones": [ "N700NC MK2", "N700NC MK2 Wired"]
- 	},  	
+ 	},
 	{
    	"name":   "Audeze",
     	"phones": [ "Sine","Sine CAL Pads", "Sine Aviator Pads" ]
@@ -14,6 +14,10 @@
 	{
    	"name":   "Drop",
     	"phones": [ "Panda" ]
+	},
+	{
+		"name":   "Focal",
+			"phones": [ "Clear Mg Pro" ]
 	},
 	{
    	"name":   "Emu",
