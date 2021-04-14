@@ -1,4 +1,4 @@
-const DIR = "data/";
+const DIR = "https://headphones.audiodiscourse.com/data/";
 // Get data (as a list of [x,y] pairs) from an FR file
 const tsvParse = fr => d3.tsvParseRows(fr).slice(15,482)
                        .map(r=>r.map(d=>+d));
