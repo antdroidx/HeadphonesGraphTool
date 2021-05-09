@@ -430,8 +430,8 @@ div.smooth:after {
   border-radius: 0 50px 50px 0;
 }
 
-/* Download, Inspect, Label, Recolor */
-div.miscTools {
+/* miscToolsL */
+div.miscToolsL {
   order: 1;
 
   display: flex;
@@ -443,7 +443,7 @@ div.miscTools {
   margin-left: 8px;
 }
 
-div.miscTools button {
+div.miscToolsL button {
   order: 1;
 
   padding: 12px 16px;
@@ -462,39 +462,39 @@ div.miscTools button {
   outline: none;
 }
 
-div.miscTools button + button {
+div.miscToolsL button + button {
   margin-left: 6px;
 }
 
-div.miscTools button.selected {
+div.miscToolsL button.selected {
   background-color: var(--accent-color) !important;
 
   color: var(--font-color-secondary);
 }
 
-div.miscTools button#recolor:active {
+div.miscToolsL button#recolor:active {
   background-color: var(--accent-color) !important;
 
   color: var(--font-color-secondary);
 }
 
-div.tools div.miscTools button:not(#download) {
+div.miscToolsL button:not(#download) {
   display: inherit;
 }
 
-div.miscTools button#download:active {
+div.miscToolsL button#download:active {
   background-color: var(--accent-color) !important;
 
   color: var(--font-color-secondary);
 }
 
-div.miscTools button#copy-url:active {
+div.miscToolsL button#copy-url:active {
   background-color: var(--accent-color) !important;
 
   color: var(--font-color-secondary);
 }
 
-div.miscTools button#theme:active {
+div.miscToolsL button#theme:active {
   background-color: var(--accent-color) !important;
 
   color: var(--font-color-secondary);
@@ -506,6 +506,78 @@ svg#expandTools {
 
 svg#expandTools path {
   display: none;
+}
+
+
+/* miscToolsR */
+div.miscToolsR {
+  order: 4;
+
+  display: flex;
+
+  background-color: var(--background-color);
+
+  padding-right: 16px;
+  padding-left: 16px;
+  margin-left: 16px;
+  border-left: 1px solid var(--background-color-contrast-more);
+}
+
+div.miscToolsR button {
+  order: 1;
+
+  padding: 12px 16px;
+
+  background-color: var(--accent-color-contrast) !important;
+  border: none;
+  border-radius: 50px;
+
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1em;
+
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+}
+
+div.miscToolsR button + button {
+  margin-left: 6px;
+}
+
+div.miscToolsR button.selected {
+  background-color: var(--accent-color) !important;
+
+  color: var(--font-color-secondary);
+}
+
+div.miscToolsR button#recolor:active {
+  background-color: var(--accent-color) !important;
+
+  color: var(--font-color-secondary);
+}
+
+div.miscToolsR button:not(#download) {
+  display: inherit;
+}
+
+div.miscToolsR button#download:active {
+  background-color: var(--accent-color) !important;
+
+  color: var(--font-color-secondary);
+}
+
+div.miscToolsR button#copy-url:active {
+  background-color: var(--accent-color) !important;
+
+  color: var(--font-color-secondary);
+}
+
+div.miscToolsR button#theme:active {
+  background-color: var(--accent-color) !important;
+
+  color: var(--font-color-secondary);
 }
 
 
@@ -1564,7 +1636,7 @@ div.about-this-tool p {
   color: var(--background-color-contrast-more);
   font-size: 14px;
   line-height: 1.6em;
-  text-align: center;
+  text-align: left;
 }
 
 div.about-this-tool a,

@@ -29,15 +29,9 @@ doc.html(`
 
       <div class="tools collapseTools">
 
-        <div class="miscTools">
+        <div class="miscToolsL">
  	  <button id="copy-url">Copy URL</button>
-	  <button id="download"><u>⇩</u> screenshot</button>
-
-          <button id="inspector">╞ inspect</button>
-          <button id="label">▭ label</button>
-
-          <button id="recolor">○ recolor</button>
-	  <button id="theme">theme</button>
+	  <button id="download">Screenshot</button>
         </div>
         <div class="normalize">
           <span>Normalize:</span>
@@ -63,6 +57,13 @@ doc.html(`
           <button>Bass</button>
           <button>Mids</button>
           <button>Treble</button>
+        </div>
+
+        <div class="miscToolsR">
+          <button id="Inspector">Inspect</button>
+          <button id="Label">Label</button>
+          <button id="Recolor">Recolor</button>
+	  <button id="Theme">Theme</button>
         </div>
 
         <svg id="expandTools" viewBox="0 0 14 12">
@@ -93,7 +94,9 @@ doc.html(`
       </div>
 
       <div class="about-this-tool">
-        <p>This graph database is maintained by Anthony Nguyen with frequency reponses produced with an IEC 60318-4 compliant ear simulator microphone with appropriate compensation curve to closely match the GRAS 43AG simulator for Headphones. This web software is based on the <a href="https://github.com/mlochbaum/CrinGraph">CrinGraph</a> open source software project.</p>
+        <p><b>Audio Discourse Notes</b></p>
+	<p>Graph data presented here was measured using an IEC 60318-4 compliant coupler and compensated to match closely to the GRAS 43AG simulator.</p>
+	<p>This <a href="https://github.com/mlochbaum/CrinGraph">Graph Tool</a> was created by Marshall Lochbaum with contributions from Crinacle, Mark Sallee (Super*), Banbeucmas, and Anthony Nguyen (Antdroid).</p>
       </div>
 
       	<div class="more-graph-sites">
