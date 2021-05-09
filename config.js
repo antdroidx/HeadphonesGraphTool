@@ -15,7 +15,7 @@ page_title = "Audio Discourse Graphs";                     // Optional. Appended
 
 // Specify which targets to display
 const targets = [
-  { type:"Neutral"   , files:["Diffuse Field", "Free Field", "Harman In-Room", "In-Ear Fidelity"] },
+  { type:"Neutral"   , files:["Diffuse Field", "Free Field", "Harman In-Room"] },
   { type:"Preference", files:["Antdroid","Harman 2013","Harman 2018", "Optimum Hifi","Sonarworks"] }
 ];
 
