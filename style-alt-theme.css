@@ -24,26 +24,26 @@
 }
 
 body.dark-mode {
-  --accent-color: hsl(0, 0%, 40%);
-  --accent-color-contrast: hsl(0, 0%, 25%);
+--accent-color: #F5F4F4;
+--accent-color-contrast: #9C9A9A;
 
-  --background-color: hsl(0, 0%, 7%);
-  --background-color-contrast: hsl(0, 0%, 2%);
-  --background-color-contrast-more: hsl(0, 0%, 40%);
+--background-color: #2A2929;
+--background-color-contrast: #3C3B3B;
+--background-color-contrast-more: #AEACAC;
 
-  --background-color-inputs: hsl(0, 0%, 15%);
+--background-color-inputs: hsl(212, 14%, 95%);
 
-  --font-color-primary: hsl(0, 0%, 80%);
-  --font-color-secondary: hsl(0, 0%, 80%);
-  --font-color-inputs: hsl(0, 0%, 50%);
+--font-color-primary: #F5F4F4;
+--font-color-secondary: #FFFFFF;
+--font-color-inputs: hsl(212, 14%, 40%);
 
-  --font-primary: 'Open Sans', sans-serif;
-  --font-secondary: monospace;
+--font-primary: 'Open Sans', sans-serif;
+--font-secondary: monospace;
 
-  --scrollbar-color: 0,0,0;
-  --scrollbar-accent: 255,255,255;
+--scrollbar-color: 0,0,0;
+--scrollbar-accent: 255,255,255;
 
-  --svg-filter: invert(1.0);
+--svg-filter: invert(1.0);
 }
 
 /* If user has system preference for dark mode, this theme overrides the theme above. Optional */
