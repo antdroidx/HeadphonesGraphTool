@@ -60,10 +60,10 @@ doc.html(`
         </div>
 
         <div class="miscToolsR">
-          <button id="Inspector">Inspect</button>
-          <button id="Label">Label</button>
-          <button id="Recolor">Recolor</button>
-	  <button id="Theme">Theme</button>
+          <button id="inspector">Inspect</button>
+          <button id="label">Label</button>
+          <button id="recolor">Recolor</button>
+	  <button id="theme">Theme</button>
         </div>
 
         <svg id="expandTools" viewBox="0 0 14 12">
