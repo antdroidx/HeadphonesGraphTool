@@ -15,8 +15,9 @@ page_title = "Audio Discourse Graphs";                     // Optional. Appended
 
 // Specify which targets to display
 const targets = [
-  { type:"Neutral"   , files:["Diffuse Field", "Free Field", "Harman In-Room", "In-Ear Fidelity"] },
-  { type:"Preference", files:["Antdroid","Harman 2013","Harman 2018", "Optimum Hifi","Sonarworks"] }
+  //{ type:"Neutral"   , files:["Diffuse Field", "Free Field", "Harman In-Room", "In-Ear Fidelity"] },
+  //{ type:"Preference", files:["Antdroid","Harman 2013","Harman 2018", "Optimum Hifi","Sonarworks"] }
+  { type:"", files:["Antdroid","Diffuse Field","Free Field","Harman In-Room","Harman 2013","Harman 2018","In-Ear Fidelity","USOUND3V0 Optimum Hifi","Sonarworks"]}
 ];
 
 

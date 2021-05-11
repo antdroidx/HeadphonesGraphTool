@@ -114,7 +114,9 @@ doc.html(`
         <a href="https://squig.link/">Super* Review</a>
 	</div> <div class="more-graph-sites">
         <span>Headphones</span>
+	<a href="https://headphonetestlab.co.uk/">Headphone Test Lab</a>
         <a href="https://crinacle.com/graphs/headphones/graphtool/">In-Ear Fidelity</a>
+	<a href="https://headphonedatabase.com/">Oratory1990 Database</a>
         <a href="https://squig.link/hp.html">Super* Review</a>
       </div>
     </section>
