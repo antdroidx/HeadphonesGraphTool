@@ -40,6 +40,10 @@
     	"phones": [ "KPH-30i Yaxi", "KSC-35 Yaxi", "KSC-75 Yaxi", "PortaPro Yaxi" ]
 	},
 	{
+   	"name":   "Little Dot",
+    	"phones": [ "GYFU" ]
+	},
+	{
    	"name":   "Meze",
     	"phones": [ "Empyrean Leather", "Empyrean Suede" ]
 	},
