@@ -56,6 +56,10 @@
     	"phones": [ "HD600" ]
 	},
 	{
+		"name":   "Sivga",
+			"phones": [ "PII" ]
+	},
+	{
    	"name":   "Sony",
     	"phones": [ "MDR-CD900ST" ]
 	},
