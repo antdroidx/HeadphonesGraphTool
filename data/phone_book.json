@@ -53,7 +53,7 @@
 	},
 	{
    	"name":   "Sennheiser",
-    	"phones": [ "HD600" ]
+    	"phones": [ "HD600","HD800S",{"name":"HD800-SDR + Dekoni Hybrid Pads","file":"HD800SDR"} ]
 	},
 	{
 		"name":   "Sivga",
