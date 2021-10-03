@@ -8,6 +8,10 @@
     	"phones": [ "Sine","Sine CAL Pads", "Sine Aviator Pads" ]
 	},
 	{
+		"name":   "Bang & Olufsen",
+			"phones": [ "H95" ]
+	},
+	{
    	"name":   "Denon",
     	"phones": [ "D5200" ]
 	},
