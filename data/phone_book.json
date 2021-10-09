@@ -39,6 +39,10 @@
    	"name":   "Hifiman",
     	"phones": [ "Arya", "HE400SE", {"name":"HE6SE V2","file":["HE6SE V2", "HE6SE V2 Grill Mod", "HE6SE V2 Dekoni TH610 Hybrid", "HE6SE V2 Dekoni Leather", "HE6SE V2 Defean Hybrid"]}, "Susvara" ]
   	},
+		{
+			"name":   "Kennerton",
+				"phones": [ {"name":"Rognir Stabilized Karalein Birch","file":"Rognir"}]
+		},
 	{
    	"name":   "Koss",
     	"phones": [ "KPH-30i Yaxi", "KSC-35 Yaxi", "KSC-75 Yaxi", "PortaPro Yaxi" ]
