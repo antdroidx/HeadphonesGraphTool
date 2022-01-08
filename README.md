@@ -1,3 +1,7 @@
+This is a port of the IEM Graph Tool and used for Audio Discourse.com with some modifications. This repository includes all the measurement data for your consumption as well!
+
+
+
 # The In-Ear Graphing Library
 
 If you're not weirdly obsessed with headphones you can leave at any time.
