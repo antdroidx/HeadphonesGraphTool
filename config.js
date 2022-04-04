@@ -1,5 +1,5 @@
 // Configuration options
-const init_phones = ["Antdroid Target"],                      // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
+const init_phones = ["Antdroid v3 Target"],                      // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
 DIR = "data/",                                // Directory where graph files are stored
 data_format = "REW",                   // Accepts "AudioTools," "REW," or "other"
 default_channels = ["L","R"],                 // Which channels to display. Avoid javascript errors if loading just one channel per phone
@@ -17,7 +17,7 @@ page_title = "Audio Discourse Graphs";                     // Optional. Appended
 const targets = [
   //{ type:"Neutral"   , files:["Diffuse Field", "Free Field", "Harman In-Room", "In-Ear Fidelity"] },
   //{ type:"Preference", files:["Antdroid","Harman 2013","Harman 2018", "Optimum Hifi","Sonarworks"] }
-  { type:"", files:["Antdroid","Diffuse Field","Free Field","Harman In-Room","Harman 2013","Harman 2018","In-Ear Fidelity","USOUND3V0 Optimum Hifi","Sonarworks"]}
+  { type:"", files:["Antdroid v3","Diffuse Field","Free Field","Harman In-Room","Harman 2013","Harman 2018","In-Ear Fidelity","USOUND3V0 Optimum Hifi","Sonarworks"]}
 ];
 
 
