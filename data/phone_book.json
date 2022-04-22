@@ -1,11 +1,11 @@
 [
 	{
  	"name":   "AKG",
-    	"phones": [ "N700NC MK2", "N700NC MK2 Wired"]
+    	"phones": [ {"name":"N700NC","file":["N700NC MK2", "N700NC MK2 Wired"]}]
  	},
 	{
    	"name":   "Audeze",
-    	"phones": [ "Sine","Sine CAL Pads", "Sine Aviator Pads" ]
+    	"phones": [ {"name":"Sine","file":["Sine","Sine CAL Pads", "Sine Aviator Pads"]} ]
 	},
 	{
 		"name":   "Bang & Olufsen",
@@ -53,7 +53,7 @@
 	},
 	{
    	"name":   "Meze",
-    	"phones": [ "Empyrean Leather", "Empyrean Suede" ]
+    	"phones": [ {"name":"Empyrean","file":["Empyrean Leather", "Empyrean Suede"]} ]
 	},
 	{
 		"name":   "Ovidius",
@@ -61,7 +61,7 @@
 	},
 	{
    	"name":   "PhilPhone",
-    	"phones": [ "3" ]
+    	"phones": [ {"name":"Prototype 3","file":"3"} ]
 	},
 	{
    	"name":   "Sennheiser",
@@ -77,6 +77,6 @@
 	},
 	{
    	"name":   "ZMF",
-    	"phones": [ "Verite - BE2", "Verite - BE2 Hybrid", "Verite - Perf Suede", "Verite - UP Leather" ]
+    	"phones": [ {"name":"Atrium","file":["Atrium (Univ Perf Leather - Solid Mesh)","Atrium (Auteur Perf Leather - Solid Mesh)"]}, {"name":"Verite","file":["Verite - BE2", "Verite - BE2 Hybrid", "Verite - Perf Suede", "Verite - Univ Perf Leather"]} ]
 	}
 ]
