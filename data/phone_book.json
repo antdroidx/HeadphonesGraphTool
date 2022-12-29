@@ -25,7 +25,7 @@
 	},
 	{
    	"name":   "Emu",
-    	"phones": [ "Rosewood" ]
+    	"phones": [ "Rosewood", "Walnut" ]
 	},
 	{
    	"name":   "Gold Planar",
@@ -65,7 +65,7 @@
 	},
 	{
    	"name":   "Sennheiser",
-    	"phones": [ "HD580", "HD600","HD800S",{"name":"HD800-SDR + Dekoni Hybrid Pads","file":"HD800SDR"} ]
+    	"phones": [ {"name":"HD580","file":["HD580", "HD580-2"]}, "HD600","HD800S",{"name":"HD800-SDR + Dekoni Hybrid Pads","file":"HD800SDR"} ]
 	},
 	{
 		"name":   "Sivga",
