@@ -8,8 +8,9 @@ html { background:#e5e5e5; }
 svg text { cursor:default; user-select:none; }
 .controls { flex:auto; display:flex; flex-flow:row-reverse wrap; }
 .manage,.select { flex:1; margin:0 0.8em; font-size:large; }
-.select { display:flex; flex-direction:column; border-bottom:2px solid #1c2126; }
-.select>div { flex:auto; display:flex; position:relative; }
+.select { border-bottom:2px solid #1c2126; }
+.select,.selector-panel { display:flex; flex-direction:column; }
+.select>div,.selector-panel>div { flex:auto; display:flex; position:relative; }
 .tools {
     display:flex; flex-wrap:wrap; justify-content:space-around;
     align-items:center; padding:0.2em 0; margin:-0.5em 1vw 0;
@@ -86,13 +87,13 @@ td.remove       { width:1.4em; font-size:120%; padding-left:0.08em; }
 
 /* For headphone as opposed to brand in current headphone table */
 .phonename { font-weight:bold; display:inline; position:relative; }
-.phonename div {
+.phonename div, .phonename span {
     position:absolute; top:0; white-space:nowrap;
     z-index:2; cursor:pointer; height:1.3em;
     background:rgba(238,238,238,0.7);
 }
 .variantName { left:-3px; padding-left:1px; border-left:2px solid #b61; }
-.variantPopout { opacity:0.65; }
+.variantPopout { opacity:0.8; }
 .phonename div:hover { color:#a61; }
 
 .keyLine { max-height:2.3em; display:block; vertical-align:center; }
@@ -166,9 +167,11 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 .curves input[type=number] { display:block; margin-left:auto; margin-right:auto; }
 
 .variants {
-    float:right; width:0.95em; margin-right:0.3em;
+    display:flex; align-items:center;
+    float:right; margin-right:0.3em;
     color:#3d332a; cursor:pointer; outline:none;
 }
+.variants svg { width:0.95em; }
 .variants:hover { color:#124; }
 
 .lineLabel { pointer-events:none; }
@@ -423,10 +426,12 @@ div.phone-item > span.remove {
 /*****
 Hiding elements from alt layout *****/
 
-div.about-this-tool,
-div.more-graph-sites,
+div.accessories,
+div.external-links,
 div.selector-tabs,
 div.copy-url,
-td.curve-color {
+td.curve-color,
+div.expand-collapse,
+button#theme {
     display: none;
 }

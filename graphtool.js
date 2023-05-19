@@ -22,17 +22,24 @@ doc.html(`
 
   <main class="main">
     <section class="parts-primary">
-    <div class="graphBox">
+    <div class="graphBox" data-sticky-graph="`+ alt_sticky_graph +`" data-animated="`+ alt_animated +`">
       <div class="graph-sizer">
-        <svg id="fr-graph" viewBox="0 0 800 346"></svg>
+        <svg id="fr-graph" viewBox="0 0 800 346" data-labels-position="`+ labelsPosition +`"></svg>
       </div>
 
       <div class="tools collapseTools">
-
-        <div class="miscToolsL">
- 	  <button id="copy-url">Copy URL</button>
-	  <button id="download">Screenshot</button>
+        <div class="copy-url">
+          <button id="copy-url">Copy URL</button>
+          <button id="download-faux">Screenshot</button>
         </div>
+
+        <div class="zoom">
+          <span>Zoom:</span>
+          <button>Bass</button>
+          <button>Mids</button>
+          <button>Treble</button>
+        </div>
+
         <div class="normalize">
           <span>Normalize:</span>
           <div>
@@ -52,18 +59,16 @@ doc.html(`
           <span>Smooth:</span>
           <input type="number" inputmode="decimal" id="smooth-level" required min="0" value="5" step="any" onclick="this.focus();this.select()"></input>
         </div>
-        <div class="zoom">
-          <span>Zoom:</span>
-          <button>Bass</button>
-          <button>Mids</button>
-          <button>Treble</button>
+
+        <div class="miscTools">
+          <button id="inspector"><span>╞</span> inspect</button>
+          <button id="label"><span>▭</span> label</button>
+          <button id="download"><span><u>⇩</u></span> screenshot</button>
+          <button id="recolor"><span>○</span> recolor</button>
         </div>
 
-        <div class="miscToolsR">
-          <button id="inspector">Inspect</button>
-          <button id="label">Label</button>
-          <button id="recolor">Recolor</button>
-	  <button id="theme">Theme</button>
+        <div class="expand-collapse">
+            <button id="expand-collapse"></button>
         </div>
 
         <svg id="expandTools" viewBox="0 0 14 12">
@@ -90,35 +95,13 @@ doc.html(`
             <td class="helpText" colspan="5">(or middle/ctrl-click when selecting; or pin other IEMs)</td>
             <td class="addLock">LOCK</td>
           </tr>
+          <tr class="mobile-helper"></tr>
         </table>
       </div>
 
-      <div class="about-this-tool">
-        <p><b>Audio Discourse Notes</b></p>
-	<p>Graph data presented here was measured using an IEC 60318-4 compliant coupler and compensated to match closely to the GRAS 43AG simulator.</p>
-	<p>This <a href="https://github.com/mlochbaum/CrinGraph">Graph Tool</a> was created by Marshall Lochbaum with contributions from Crinacle, Mark Sallee (Super*), Banbeucmas, and Anthony Nguyen (Antdroid).</p>
-      </div>
+      <div class="accessories"></div>
 
-      	<div class="more-graph-sites">
-	<span>Audio Discourse</span>
-	<a href="https://www.audiodiscourse.com/">Reviews</a>
-	<a href="https://iems.audiodiscourse.com/">IEM Graphs</a>
-	<a href="https://headphones.audiodiscourse.com/">Headphone Graphs</a>
-	</div> <div class="more-graph-sites">
-        <span>IEM graph databases</span>
-	<a href="https://hbb.squig.link/">BGGAR</a>
-        <a href="https://banbeu.com/graph/tool/">Banbeucmas</a>
-        <a href="https://www.hypethesonics.com/iemdbc/">HypetheSonics</a>
-        <a href="https://crinacle.com/graphs/iems/graphtool/">In-Ear Fidelity</a>
-        <a href="https://precog.squig.link/">Precogvision</a>
-        <a href="https://squig.link/">Super* Review</a>
-	</div> <div class="more-graph-sites">
-        <span>Headphones</span>
-	<a href="https://headphonetestlab.co.uk/">Headphone Test Lab</a>
-        <a href="https://crinacle.com/graphs/headphones/graphtool/">In-Ear Fidelity</a>
-	<a href="https://headphonedatabase.com/">Oratory1990 Database</a>
-        <a href="https://squig.link/hp.html">Super* Review</a>
-      </div>
+      <div class="external-links"></div>
     </section>
 
     <section class="parts-secondary">
@@ -127,24 +110,98 @@ doc.html(`
           <div class="selector-tabs">
             <button class="brands" data-list="brands">Brands</button>
             <button class="models" data-list="models">Models</button>
+            <button class="extra">Equalizer</button>
           </div>
 
-          <input class="search" type="text" inputmode="search" placeholder="Search" onclick="this.focus();this.select()"/>
+          <div class="selector-panel">
+            <input class="search" type="text" inputmode="search" placeholder="Search" onclick="this.focus();this.select()"/>
 
-          <svg class="chevron" viewBox="0 0 12 8" preserveAspectRatio="none">
-            <path d="M0 0h4c0 1.5,5 3,7 4c-2 1,-7 2.5,-7 4h-4c0 -3,4 -3,4 -4s-4 -1,-4 -4"/>
-          </svg>
-          <svg class="stop" viewBox="0 0 4 1">
-            <path d="M4 1H0C3 1 3.2 0.8 4 0Z"/>
-          </svg>
+            <svg class="chevron" viewBox="0 0 12 8" preserveAspectRatio="none">
+              <path d="M0 0h4c0 1.5,5 3,7 4c-2 1,-7 2.5,-7 4h-4c0 -3,4 -3,4 -4s-4 -1,-4 -4"/>
+            </svg>
+            <svg class="stop" viewBox="0 0 4 1">
+              <path d="M4 1H0C3 1 3.2 0.8 4 0Z"/>
+            </svg>
 
-          <div class="scroll-container">
-            <div class="scrollOuter" data-list="brands"><div class="scroll" id="brands"></div></div>
-            <div class="scrollOuter" data-list="models""><div class="scroll" id="phones"></div></div>
+            <div class="scroll-container">
+              <div class="scrollOuter" data-list="brands"><div class="scroll" id="brands"></div></div>
+              <div class="scrollOuter" data-list="models"><div class="scroll" id="phones"></div></div>
+            </div>
+          </div>
+
+          <div class="extra-panel" style="display: none;">
+            <div class="extra-upload">
+              <h5>Uploading</h2>
+              <button class="upload-fr">Upload FR</button>
+              <button class="upload-target">Upload Target</button>
+              <br />
+              <span><small>Uploaded data will not be persistent</small></span>
+              <form style="display:none"><input type="file" id="file-fr" accept=".csv,.txt" /></form>
+            </div>
+            <div class="extra-eq">
+              <h5>Parametric Equalizer</h2>
+              <div class="select-eq-phone">
+                <select name="phone">
+                    <option value="" selected>Choose EQ model</option>
+                </select>
+              </div>
+              <div class="filters-header">
+                <span>Type</span>
+                <span>Frequency</span>
+                <span>Gain</span>
+                <span>Q</span>
+              </div>
+              <div class="filters">
+                <div class="filter">
+                    <span>
+                      <input name="enabled" type="checkbox" checked></input>
+                      <select name="type">
+                        <option value="PK" selected>PK</option>
+                        <option value="LSQ">LSQ</option>
+                        <option value="HSQ">HSQ</option>
+                      </select>
+                    </span>
+                    <span><input name="freq" type="number" min="20" max="20000" step="1" value="0"></input></span>
+                    <span><input name="gain" type="number" min="-40" max="40" step="0.1" value="0"></input></span>
+                    <span><input name="q" type="number" min="0" max="10" step="0.1" value="0"></input></span>
+                </div>
+              </div>
+              <div class="settings-row">
+                <span>AutoEQ Range</span>
+                <span><input name="autoeq-from" type="number" min="20" max="20000" step="1" value="20"></input></span>
+                <span><input name="autoeq-to" type="number" min="20" max="20000" step="1" value="20000"></input></span>
+              </div>
+              <div class="filters-button">
+                <button class="add-filter">＋</button>
+                <button class="remove-filter">－</button>
+                <button class="sort-filters">Sort</button>
+                <button class="import-filters">Import</button>
+                <button class="export-filters">Export</button>
+                <button class="autoeq">AutoEQ</button>
+                <button class="export-graphic-filters">Export Graphic EQ (For Wavelet)</button>
+                <button class="readme">Readme</button>
+              </div>
+              <a style="display: none" id="file-filters-export"></a>
+              <form style="display:none"><input type="file" id="file-filters-import" accept=".txt" /></form>
+            </div>
+            <div class="extra-tone-generator">
+              <h5>Tone Generator</h2>
+              <div class="settings-row">
+                <span>Freq Range</span>
+                <span><input name="tone-generator-from" type="number" min="20" max="20000" step="1" value="20"></input></span>
+                <span><input name="tone-generator-to" type="number" min="20" max="20000" step="1" value="20000"></input></span>
+              </div>
+              <div><input name="tone-generator-freq" type="range" min="0" max="1" step="0.0001" value="0" /></div>
+              <div>
+                <button class="play">Play</button>
+                <span>Frequency: <span class="freq-text">20</span> Hz</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
+    <div style="display: none" class="extra-eq-overlay">AutoEQ is running, it could take 5~20 seconds or more.</div>
   </main>
 `);
 
@@ -520,6 +577,9 @@ function saveGraph(ext) {
     showControls(false);
     fn(gr.node(), "graph."+ext, {scale:3})
         .then(()=>showControls(true));
+    
+    // Analytics event
+    if (analyticsEnabled) { pushEventTag("clicked_download", targetWindow); }
 }
 doc.select("#download")
     .on("click", () => saveGraph("png"))
@@ -729,7 +789,8 @@ function loadFiles(p, callback) {
         if (!frs.some(f=>f!==null)) {
             alert("Headphone not found!");
         } else {
-            callback(frs.map(f => f && tsvParse(f)));
+            let ch = frs.map(f => f && Equalizer.interp(f_values, tsvParse(f)));
+            callback(ch);
         }
     });
 }
@@ -802,8 +863,10 @@ function getDivColor(id, active) {
     return c;
 }
 function color_curveToText(c) {
-    c.l = c.l/5 + 10;
-    c.c /= 3;
+    if (!alt_layout) {
+        c.l = c.l/5 + 10;
+        c.c /= 3;
+    }
     return c;
 }
 let getTooltipColor = curve => color_curveToText(getColor_AC(curve));
@@ -836,8 +899,11 @@ if (noTargets || typeof max_compare !== "undefined") {
             cantTarget = p => p.isTarget && a.indexOf(r(p.fileName))<0;
         }
     }
-    cantCompare = function(m, p, noMessage) {
-        if (m<max_compare && !(p&&cantTarget(p))) { return false; }
+    let ct = typeof restrict_target === "undefined" || restrict_target,
+        ccfilter = ct ? (l => l) : (l => l.filter(p=>!p.isTarget));
+    cantCompare = function(ps, add, p, noMessage) {
+        let count = ccfilter(ps).length + (add||0) - (!ct&&p&&p.isTarget?1:0);
+        if (count<max_compare && !(p&&cantTarget(p))) { return false; }
         if (noMessage) { return true; }
         let div = doc.append("div");
         let c = currency[currencyCounter++ % currency.length];
@@ -909,6 +975,7 @@ function setPhoneTr(phtr) {
     phtr.style("background",p=>p.isTarget&&!p.active?null:getDivColor(p.id,p.highlight))
         .style("border-color",p=>p.highlight?getDivColor(p.id,1):null);
     phtr.filter(p=>!p.isTarget)
+        .select(".phone-item-add")
         .selectAll(".remove").data(p=>p.highlight?[p]:[])
         .join("span").attr("class","remove").text("⊗")
         .on("click", p => { d3.event.stopPropagation(); removeCopies(p); });
@@ -992,6 +1059,9 @@ function setBaseline(b, no_transition) {
         .attr("d", drawLine);
     table.selectAll("tr").select(".button")
         .classed("selected", p=>p===baseline.p);
+    
+    // Analytics event
+    if (analyticsEnabled && b.p) { pushPhoneTag("baseline_set", b.p); }
 }
 function getBaseline(p) {
     let b = getAvg(p).map(d => d[1]+getOffset(p));
@@ -1009,32 +1079,64 @@ function setHover(elt, h) {
     elt.on("mouseover", h(true)).on("mouseout", h(false));
 }
 
+// See if iframe gets CORS error when interacting with window.top
+try {
+    let emb = window.location.href.includes('embed');
+    
+    accessWindowTop = (window.top.location.href) ? true:false;
+    targetWindow = emb ? window : window.top;
+} catch {
+    accessWindowTop = false;
+    targetWindow = window;
+}
+
+// See if iframe gets CORS error when interacting with window.top.document
+try {
+    accessDocumentTop = (window.top.document) ? true:false;
+} catch {
+    accessDocumentTop = false;
+}
+
 let ifURL = typeof share_url !== "undefined" && share_url;
 let baseTitle = typeof page_title !== "undefined" ? page_title : "CrinGraph";
+let baseDescription = typeof page_description !== "undefined" ? page_description : "View and compare frequency response graphs";
 let baseURL;  // Set by setInitPhones
 function addPhonesToUrl() {
     let title = baseTitle,
         url = baseURL,
-        names = activePhones.map(p => p.fileName);
+        names = activePhones.filter(p => !p.isDynamic).map(p => p.fileName),
+        namesCombined = names.join(", ");
+    
     if (names.length) {
         url += "?share=" + encodeURI(names.join().replace(/ /g,"_"));
-        title = names.join(", ") + " - " + title;
+        title = namesCombined + " - " + title;
     }
-    window.top.history.replaceState("", title, url);
-    top.document.title = title;
+    if (names.length === 1) {
+        targetWindow.document.querySelector("link[rel='canonical']").setAttribute("href",url)
+    } else {
+        targetWindow.document.querySelector("link[rel='canonical']").setAttribute("href",baseURL)
+    }
+    targetWindow.history.replaceState("", title, url);
+    targetWindow.document.title = title;
+    targetWindow.document.querySelector("meta[name='description']").setAttribute("content",baseDescription + ", including " + namesCombined +".");
 }
-function updatePaths() {
+function updatePaths(trigger) {
     clearLabels();
     let c = d3.merge(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
-    p.join("path").attr("opacity", c=>c.p.hide?0:null)
+    let t = p.join("path").attr("opacity", c=>c.p.hide?0:null)
         .classed("sample", c=>c.p.samp)
-        .attr("stroke", getColor_AC).call(redrawLine);
-    if (ifURL) addPhonesToUrl();
+        .attr("stroke", getColor_AC).call(redrawLine)
+        .filter(c=>c.p.isTarget)
+        .attr("class", "target");
+    if (targetDashed) t.style("stroke-dasharray", "6, 3");
+    if (targetColorCustom) t.attr("stroke", targetColorCustom);
+    if (ifURL && !trigger) addPhonesToUrl();
+    if (stickyLabels) drawLabels();
 }
 let colorBar = p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 8"><path d="M0 8v-8h1c0.05 1.5,-0.3 3,-0.16 5s0.1 2,0.15 3z" fill="'+getBgColor(p)+'"/></svg>\')';
 function updatePhoneTable() {
-    let c = table.selectAll("tr").data(activePhones, p=>p.id);
+    let c = table.selectAll("tr").data(activePhones, p=>p.fileName);
     c.exit().remove();
     let f = c.enter().append("tr"),
         td = () => f.append("td");
@@ -1045,11 +1147,13 @@ function updatePhoneTable() {
         .on("click", removePhone)
         .style("background-image",colorBar)
         .filter(p=>!p.isTarget).append("svg").call(addColorPicker);
-    td().attr("class",p=>p.isTarget?"item-line item-target":"item-line item-phone").html(p=>p.isTarget?"":"<span class=\"brand\">"+p.dispBrand+"</span>").call(addModel)
-        //Change colors on clicking
-//        .filter(p=>!p.isTarget).call(addColorPicker);
-    td().attr("class","curve-color").html("<button></button>")
-        .filter(p=>!p.isTarget).call(addColorPicker);
+    td().attr("class","item-line item-target")
+        .call(s=>s.filter(p=>!p.isTarget).attr("class","item-line item-phone")
+                  .append("span").attr("class","brand").text(p=>p.dispBrand))
+        .call(addModel);
+    td().attr("class","curve-color").append("button")
+        .style("background-color",p=>getCurveColor(p.id,0))
+        .filter(p=>!p.isTarget).call(makeColorPicker);
     td().attr("class","channels").append("svg").call(addKey)
     td().attr("class","levels").append("input")
         .attrs({type:"number",step:"any",value:0})
@@ -1065,10 +1169,13 @@ function updatePhoneTable() {
         t.select(".keyLine").on("click", h?null:toggleHide)
             .selectAll("path,.imbalance").attr("opacity", h?null:0.5);
         t.select(".hideIcon").classed("selected", !h);
-        clearLabels();
         gpath.selectAll("path").filter(c=>c.p===p)
             .attr("opacity", h?null:0);
         p.hide = !h;
+        if (labelsShown) {
+            clearLabels();
+            drawLabels();
+        }
     }
     td().attr("class","button hideIcon")
         .html("<svg viewBox='-2.5 0 19 12'><use xlink:href='#hide-icon'></use></svg>")
@@ -1077,7 +1184,7 @@ function updatePhoneTable() {
         .attr("data-pinned","false")
         .html("<svg viewBox='-135 -100 270 200'><use xlink:href='#pin-icon'></use></svg>")
         .on("click",function(p){
-            if (cantCompare(activePhones.filter(p=>p.pin).length+1)) return;
+            if (cantCompare(activePhones.filter(p=>p.pin),1)) return;
 
             if ( p.pin ) {
                 p.pin = false;
@@ -1201,13 +1308,12 @@ function updateKey(s) {
 }
 
 function addModel(t) {
-    t.each(function (p) { if (!p.vars) { p.vars = {}; } });
     let n = t.append("div").attr("class","phonename").text(p=>p.dispName);
     t.filter(p=>p.fileNames)
         .append("div").attr("class","variants")
         .call(function (s) {
-            s.attr("viewBox","0 -2 10 11");
-            s.append("path").attr("fill","currentColor")
+            s.append("svg").attr("viewBox","0 -2 10 11")
+                .append("path").attr("fill","currentColor")
                 .attr("d","M1 2L5 6L9 2L8 1L6 3Q5 4 4 3L2 1Z");
         })
         .attr("tabindex",0) // Make focusable
@@ -1226,11 +1332,10 @@ function addModel(t) {
             let q = p.copyOf || p,
                 o = q.objs || [p],
                 active_fns = o.map(v=>v.fileName),
-                dns = q.dispNames || q.fileNames;
                 vars = p.fileNames.map((f,i) => {
                     let j = active_fns.indexOf(f);
                     return j!==-1 ? o[j] :
-                        {fileName:f, dispName:dns[i]};
+                        {fileName:f, dispName:q.dispNames[i]};
                 });
             let d = n.selectAll().data(vars).join("div")
                      .attr("class","variantName").text(v=>v.dispName),
@@ -1247,15 +1352,10 @@ function addModel(t) {
                 .html("&nbsp;+&nbsp;").attr("class","variantPopout")
                 .style("left",(w+5)+"px")
                 .style("display",v=>v.active?"none":null);
-            [d,c].forEach(e=>e.transition().style("top",(_,i)=>i*1+"em"));
+            [d,c].forEach(e=>e.transition().style("top",(_,i)=>i*1.3+"em"));
             d.filter(v=>!v.active).on("mousedown", v => Object.assign(p,v));
-            c.on("mousedown", function (v,i) {
-                if (cantCompare(activePhones.length)) return;
-                if (!q.objs) { q.objs = [q]; }
-                v.active=true; v.copyOf=q;
-                ["brand","dispBrand","fileNames","vars"].map(k=>v[k]=q[k]);
-                q.objs.push(v);
-                changeVariant(v, showPhone);
+            c.on("mousedown", function (v) {
+                showVariant(q, v);
             });
         })
         .on("blur", function endSelect(p) {
@@ -1280,20 +1380,28 @@ function updateVariant(p) {
     normalizePhone(p);
     updatePaths();
 }
-function changeVariant(p, update) {
+function changeVariant(p, update, trigger) {
     let fn = p.fileName,
         ch = p.vars[fn];
     function set(ch) {
         p.rawChannels = ch; p.smooth = undefined;
         smoothPhone(p);
         setCurves(p);
-        update(p);
+        update(p, 0, 0, trigger);
     }
     if (ch) {
         set(ch);
     } else {
         loadFiles(p, set);
     }
+}
+function showVariant(p, c, trigger) {
+    if (cantCompare(activePhones)) return;
+    if (!p.objs) { p.objs = [p]; }
+    p.objs.push(c);
+    c.active=true; c.copyOf=p;
+    ["brand","dispBrand","fileNames","vars"].map(k=>c[k]=p[k]);
+    changeVariant(c, showPhone, trigger);
 }
 
 function cpCircles(svg) {
@@ -1305,7 +1413,10 @@ function addColorPicker(svg) {
     svg.attr("viewBox","0 0 9 5.3");
     svg.append("rect").attrs({x:0,y:0,width:9,height:5.3,fill:"none"});
     svg.call(cpCircles);
-    svg.on("click", function (p) {
+    makeColorPicker(svg);
+}
+function makeColorPicker(elt) {
+    elt.on("click", function (p) {
         p.id = getPhoneNumber();
         colorPhones();
         d3.event.stopPropagation();
@@ -1315,18 +1426,25 @@ function addColorPicker(svg) {
 function colorPhones() {
     updatePaths();
     let c = p=>p.active?getDivColor(p.id,true):null;
-    doc.select("#phones").selectAll("div")
+    doc.select("#phones").selectAll("div.phone-item")
         .style("background",c).style("border-color",c);
     let t = table.selectAll("tr").filter(p=>!p.isTarget)
-        .style("color", c)
-        .call(s => s.select(".remove").style("background-image",colorBar)
+        .style("color", c);
+    t.select("button").style("background-color",p=>getCurveColor(p.id,0));
+    t= t.call(s => s.select(".remove").style("background-image",colorBar)
                     .select("svg").call(cpCircles))
         .select("td.channels"); // Key line
     t.select("svg").remove();
     t.append("svg").call(addKey);
 }
 
-let f_values; // Assumed to be the same for all headphones
+let f_values = (function() {
+    // Standard frequencies, all phone need to interpolate to this
+    let f = [20];
+    let step = Math.pow(2, 1/48); // 1/48 octave
+    while (f[f.length-1] < 20000) { f.push(f[f.length-1] * step) }
+    return f;
+})();
 let fr_to_ind = fr => d3.bisect(f_values, fr, 0, f_values.length-1);
 function range_to_slice(xs, fn) {
     let r = xs.map(v => d3.bisectLeft(f_values, x.invert(fn(v))));
@@ -1344,6 +1462,11 @@ function normalizePhone(p) {
         p.norm = 60 - avg(validChannels(p).map(l=>l[i][1]));
     } else { // phon
         p.norm = find_offset(getAvg(p), norm_phon);
+    }
+    if (p.eq) {
+        p.eq.norm = p.norm; // copy parent's norm to child
+    } else if (p.eqParent) {
+        p.norm = p.eqParent.norm; // set child's norm from parent
     }
 }
 
@@ -1372,7 +1495,7 @@ norms.select("span").on("click", (_,i)=>setNorm(_,i,false));
 let addPhoneSet = false, // Whether add phone button was clicked
     addPhoneLock= false;
 function setAddButton(a) {
-    if (a && cantCompare(activePhones.length)) return false;
+    if (a && cantCompare(activePhones)) return false;
     if (addPhoneSet !== a) {
         addPhoneSet = a;
         doc.select(".addPhone").classed("selected", a)
@@ -1391,24 +1514,31 @@ doc.select(".addLock").on("click", function () {
     }
 });
 
-function showPhone(p, exclusive, suppressVariant) {
+function showPhone(p, exclusive, suppressVariant, trigger) {
     if (p.isTarget && activePhones.indexOf(p)!==-1) {
         removePhone(p);
         return;
     }
     if (addPhoneSet) {
         exclusive = false;
-        if (!addPhoneLock || cantCompare(activePhones.length+1,null,true)) {
+        if (!addPhoneLock || cantCompare(activePhones,1,null,true)) {
             setAddButton(false);
         }
     }
-    if (cantCompare(exclusive?0:activePhones.length, p)) return;
+    let keep = !exclusive ? (q=>true)
+             : (q => q.copyOf===p || q.pin || q.isTarget!==p.isTarget);
+    if (cantCompare(activePhones.filter(keep),0, p)) return;
     if (!p.rawChannels) {
         loadFiles(p, function (ch) {
             if (p.rawChannels) return;
             p.rawChannels = ch;
-            if (!f_values) { f_values = ch[0].map(d=>d[0]); }
-            showPhone(p, exclusive, suppressVariant);
+            showPhone(p, exclusive, suppressVariant, trigger);
+            
+            // Scroll to selected
+            if (trigger) { scrollToActive(); }
+            
+            // Analytics event
+            if (analyticsEnabled) { pushPhoneTag("phone_displayed", p, trigger); }
         });
         return;
     }
@@ -1416,12 +1546,10 @@ function showPhone(p, exclusive, suppressVariant) {
     if (p.id === undefined) { p.id = getPhoneNumber(); }
     normalizePhone(p); p.offset=p.offset||0;
     if (exclusive) {
-        activePhones = activePhones.filter(q=>
-            q.active = q.copyOf===p || q.pin || q.isTarget!==p.isTarget
-        );
+        activePhones = activePhones.filter(q => q.active = keep(q));
         if (baseline.p && !baseline.p.active) setBaseline(baseline0,1);
     }
-    if (activePhones.indexOf(p)===-1 && !p.objs) {
+    if (activePhones.indexOf(p)===-1 && (suppressVariant || !p.objs)) {
         let avg = false;
         if (!p.isTarget) {
             let ap = activePhones.filter(p => !p.isTarget);
@@ -1436,15 +1564,21 @@ function showPhone(p, exclusive, suppressVariant) {
         p.active = true;
         setCurves(p, avg);
     }
-    updatePaths();
+    updatePaths(trigger);
     updatePhoneTable();
-    d3.selectAll("#phones div,.target")
+    d3.selectAll("#phones .phone-item,.target")
         .filter(p=>p.id!==undefined)
         .call(setPhoneTr);
-//    Displays variant pop-up when phone displayed
-    if (!suppressVariant && p.fileNames && !p.copyOf) {
+    //Displays variant pop-up when phone displayed
+    if (!suppressVariant && p.fileNames && !p.copyOf && window.innerWidth > 1000) {
         table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
+    } else {
+        document.activeElement.blur();
     }
+    if (extraEnabled && extraEQEnabled) {
+        updateEQPhoneSelect();
+    }
+    if (!p.isTarget && alt_augment ) { augmentList(p); }
 }
 
 function removeCopies(p) {
@@ -1454,6 +1588,7 @@ function removeCopies(p) {
     }
     removePhone(p);
 }
+
 function removePhone(p) {
     p.active = p.pin = false; nextPN = null;
     activePhones = activePhones.filter(q => q.active);
@@ -1469,67 +1604,108 @@ function removePhone(p) {
     d3.selectAll("#phones div,.target")
         .filter(q=>q===(p.copyOf||p))
         .call(setPhoneTr);
+    if (extraEnabled && extraEQEnabled) {
+        updateEQPhoneSelect();
+    }
+}
+
+function asPhoneObj(b, p, isInit, inits) {
+    if (!isInit) {
+        isInit = _ => false;
+    }
+    let r = { brand:b, dispBrand:b.name };
+    if (typeof p === "string") {
+        r.phone = r.fileName = p;
+        if (isInit(p)) inits.push(r);
+    } else {
+        r.phone = p.name;
+        if (p.collab) {
+            r.dispBrand += " x "+p.collab;
+            r.collab = brandMap[p.collab];
+        }
+        let f = p.file || p.name;
+        if (typeof f === "string") {
+            r.fileName = f;
+            if (isInit(f)) inits.push(r);
+        } else {
+            r.fileNames = f;
+            r.vars = {};
+            let dns = f;
+            if (p.suffix) {
+                dns = p.suffix.map(
+                    s => p.name + (s ? " "+s : "")
+                );
+            } else if (p.prefix) {
+                let reg = new RegExp("^"+p.prefix+"\s*", "i");
+                dns = f.map(n => {
+                    n = n.replace(reg, "");
+                    return p.name + (n.length ? " "+n : n);
+                });
+            }
+            r.dispNames = dns;
+            r.fileName = f[0];
+            r.dispName = dns[0];
+            let c = r;
+            f.map((fn,i) => {
+                if (!isInit(fn)) return;
+                c.fileName=fn; c.dispName=dns[i];
+                inits.push(c);
+                c = {copyOf:r};
+            });
+        }
+    }
+    r.dispName = r.dispName || r.phone;
+    r.fullName = r.dispBrand + " " + r.phone;
+    if (alt_augment) {
+        r.reviewScore = p.reviewScore;
+        r.reviewLink = p.reviewLink;
+        r.shopLink = p.shopLink;
+        r.price = p.price;
+    }
+    return r;
 }
 
 d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
-            : DIR+"phone_book.json").then(function (brands) {
-    let brandMap = {},
+            : DIR+"phone_book.json?"+ new Date().getTime()).then(function (brands) {
+    let brandMap = window.brandMap = {},
         inits = [],
         initReq = typeof init_phones !== "undefined" ? init_phones : false;
+    loadFromShare = 0;
+    
     if (ifURL) {
-        let url = window.top.location.href,
-            par = "?share=";
+        let url = targetWindow.location.href,
+            par = "share=";
+            emb = "embed";
         baseURL = url.split("?").shift();
-        if (url.includes(par)) {
-            initReq = decodeURI(url.replace(/_/g," ").split(par).pop()).split(",");
+        if (url.includes(par) && url.includes(emb)) {
+            initReq = decodeURIComponent(url.replace(/_/g," ").split(par).pop()).split(",");
+            loadFromShare = 2;
+        } else if (url.includes(par)) {
+            initReq = decodeURIComponent(url.replace(/_/g," ").split(par).pop()).split(",");
+            loadFromShare = 1;
         }
     }
     let isInit = initReq ? f => initReq.indexOf(f) !== -1
                          : _ => false;
+    
+    if (loadFromShare === 1) {
+        initMode = "share";
+    } else if (loadFromShare === 2) {
+        initMode = "embed";
+    } else {
+        initMode = "config";
+    }
+
+    brands.push({ name: "Uploaded", phones: [] });
     brands.forEach(b => brandMap[b.name] = b);
     brands.forEach(function (b) {
         b.active = false;
         b.phoneObjs = b.phones.map(function (p) {
-            let r = { brand:b, dispBrand:b.name };
-            let init = -2;
-            if (typeof p === "string") {
-                r.phone = r.fileName = p;
-            } else {
-                r.phone = p.name;
-                if (p.collab) {
-                    r.dispBrand += " x "+p.collab;
-                    r.collab = brandMap[p.collab];
-                }
-                let f = p.file || p.name;
-                if (typeof f === "string") {
-                    r.fileName = f;
-                } else {
-                    r.fileNames = f;
-                    init = f.map(isInit).indexOf(true);
-                    let ind = Math.max(0, init);
-                    r.fileName = f[ind];
-                    if (p.suffix) {
-                        r.dispNames = p.suffix.map(
-                            s => p.name + (s ? " "+s : "")
-                        );
-                    } else if (p.prefix) {
-                        let reg = new RegExp("^"+p.prefix+"\s*", "i");
-                        r.dispNames = f.map(n => {
-                            n = n.replace(reg, "");
-                            return p.name + (n.length ? " "+n : n);
-                        });
-                    }
-                    r.dispName = (r.dispNames||r.fileNames)[ind];
-                }
-            }
-            r.dispName = r.dispName || r.phone;
-            r.fullName = r.dispBrand + " " + r.phone;
-            if (init===-2 ? isInit(r.fileName) : init>=0) { inits.push(r); }
-            return r;
+            return asPhoneObj(b, p, isInit, inits);
         });
     });
 
-    let allPhones = d3.merge(brands.map(b=>b.phoneObjs)),
+    let allPhones = window.allPhones = d3.merge(brands.map(b=>b.phoneObjs)),
         currentBrands = [];
     if (!initReq) inits.push(allPhones[0]);
 
@@ -1548,27 +1724,30 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         d3.select(this).style("background", fn(p));
         (p.objs||[p]).forEach(q=>hl(q,h));
     }
-    let phoneSel = doc.select("#phones").selectAll()
-        .data(allPhones).join("div")
-        .attr("class","phone-item")
-        .on("mouseover", bg(true, p => getDivColor(p.id===undefined?nextPhoneNumber():p.id, true)))
-        .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
-        .call(setClicks(showPhone));
-    phoneSel.append("span").text(p=>p.fullName);
-
-    // Adding the + selection button
-    phoneSel.append("div")
-            .attr("class", "phone-item-add")
-            .on("click", p => {
-                d3.event.stopPropagation();
-                showPhone(p, 0);
-                let panelsContainer = document.querySelector("main.main");
-                panelsContainer.setAttribute("data-focused-panel","primary");
-            })
-
+    window.updatePhoneSelect = () => {
+        doc.select("#phones").selectAll("div.phone-item")
+            .data(allPhones)
+            .join((enter) => {
+                let phoneDiv = enter.append("div")
+                    .attr("class","phone-item")
+                    .attr("name", p=>p.fullName)
+                    .on("mouseover", bg(true, p => getDivColor(p.id===undefined?nextPhoneNumber():p.id, true)))
+                    .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
+                    .call(setClicks(showPhone));
+                phoneDiv.append("span").text(p=>p.fullName);
+                // Adding the + selection button
+                phoneDiv.append("div")
+                    .attr("class", "phone-item-add")
+                    .on("click", p => {
+                        d3.event.stopPropagation();
+                        showPhone(p, 0);
+                    });
+           });
+    };
+    updatePhoneSelect();
 
     if (targets) {
-        let b = { name:"Targets", active:false },
+        let b = window.brandTarget = { name:"Targets", active:false },
             ti = -targets.length,
             ph = t => ({
                 isTarget:true, brand:b,
@@ -1578,7 +1757,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             .attr("class", "targets collapseTools");
         let l = (text,c) => s => s.append("div").attr("class","targetLabel").append("span").text(text);
         let ts = b.phoneObjs = doc.select(".targets").call(l("Targets"))
-            .selectAll().data(targets).join().call(l(t=>t.type))
+            .selectAll().data(targets).join("div").call(l(t=>t.type))
             .style("flex-grow",t=>t.files.length).attr("class","targetClass")
             .selectAll().data(t=>t.files.map(ph))
             .join("div").text(t=>t.dispName).attr("class","target")
@@ -1590,9 +1769,11 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         });
     }
 
-    inits.map(p => showPhone(p,0,1));
+    inits.map(p => p.copyOf ? showVariant(p.copyOf, p, initMode)
+                            : showPhone(p,0,1, initMode));
 
     function setBrand(b, exclusive) {
+        let phoneSel = doc.select("#phones").selectAll("div.phone-item");
         let incl = currentBrands.indexOf(b) !== -1;
         let hasBrand = (p,b) => p.brand===b || p.collab===b;
         if (exclusive || currentBrands.length===0) {
@@ -1661,6 +1842,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         } else {
             fn = c.length ? test : (p=>true);
         }
+        let phoneSel = doc.select("#phones").selectAll("div.phone-item");
         phoneSel.style("display", p => fn(p)?null:"none");
         brandSel.style("display", b => bl.indexOf(b)!==-1?null:"none");
     });
@@ -1671,9 +1853,9 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         activePhones.forEach(p => { if (!p.isTarget) { p.id = getPhoneNumber(); } });
         colorPhones();
     });
-
+    
     doc.select("#theme").on("click", function () {
-	themeChooser();
+        themeChooser("change");
     });
 });
 
@@ -1682,11 +1864,13 @@ function pathHL(c, m, imm) {
     gpath.selectAll("path").classed("highlight", c ? d=>d===c   : false);
     table.selectAll("tr")  .classed("highlight", c ? p=>p===c.p : false);
     if (pathHoverTimeout) { clearTimeout(pathHoverTimeout); }
-    clearLabels();
-    pathHoverTimeout =
-        imm ? pathTooltip(c, m) :
-        c   ? setTimeout(pathTooltip, 400, c, m) :
-        undefined;
+    if(!stickyLabels) {
+        clearLabels();
+        pathHoverTimeout =
+            imm ? pathTooltip(c, m) :
+            c   ? setTimeout(pathTooltip, 400, c, m) :
+            undefined;
+    }
 }
 function pathTooltip(c, m) {
     let g = gr.selectAll(".lineLabel").data([c.id])
@@ -1809,7 +1993,7 @@ function copyUrlInit() {
 
     copyUrlButton.addEventListener("click", function(e) {
         let urlHost = document.createElement('input'),
-            currentUrl = window.top.location.href;
+            currentUrl = targetWindow.location.href;
 
         urlHost.setAttribute("style","position: fixed; opacity: 0.0;");
         urlHost.value = currentUrl;
@@ -1819,16 +2003,60 @@ function copyUrlInit() {
         document.execCommand('copy');
         document.body.removeChild(urlHost);
 
-        console.log(currentUrl);
         e.stopPropagation();
 
         copyUrlButton.classList.add("clicked");
         setTimeout(function() {
             copyUrlButton.classList.remove("clicked");
         }, 600);
+        
+        // Analytics event
+        if (analyticsEnabled) { pushEventTag("clicked_copyUrl", targetWindow); }
     });
 }
 copyUrlInit();
+
+// Theme Chooser
+function themeChooser(command) {
+    let docBody = document.querySelector("body"),
+        darkClass = "dark-mode",
+        darkModePref = localStorage.getItem("dark-mode-pref");
+    
+    if ( darkModePref ) {
+        if ( command === "change") {
+            localStorage.removeItem("dark-mode-pref");
+            docBody.classList.remove(darkClass);
+        } else {
+            docBody.classList.add(darkClass);
+        }
+    } else {
+        if ( command === "change" ) {
+            localStorage.setItem("dark-mode-pref", "true");
+            docBody.classList.add(darkClass);
+        }
+    }
+}
+if ( darkModeButton ) {
+    let themeButton = document.createElement("button"),
+        miscTools = document.querySelector("div.miscTools");
+        
+    themeButton.setAttribute("id", "theme");
+    themeButton.textContent = "dark mode";
+    miscTools.append(themeButton);
+    
+    themeChooser();
+}
+
+// Map faux download button
+function mapDownloadFaux() {
+    let downloadButton = document.querySelector("button#download"),
+        downloadFaux = document.querySelector("button#download-faux");
+    
+    downloadFaux.addEventListener("click", function() {
+        downloadButton.click();
+    });
+}
+mapDownloadFaux();
 
 // Set focused scroll list
 function setFocusedList(selectedList) {
@@ -1844,72 +2072,1003 @@ function focusedListClicks() {
         clickedTarget.addEventListener("click", () => {
             let selectedList = clickedTarget.getAttribute("data-list")
             setFocusedList(selectedList);
+            window.hideExtraPanel && window.hideExtraPanel(selectedList);
         });
     });
 
-    let brandsTargets = document.querySelectorAll("div.scroll#brands");
-    brandsTargets.forEach((clickedTarget) => {
-        clickedTarget.addEventListener("click", (e) => {
-            let selectedList = "models";
-                setFocusedList(selectedList);
-                e.stopPropagation();
-        });
+    let brandsList = document.querySelector("div.scroll#brands");
+    
+    brandsList.addEventListener("click", function(e) {
+        let clickedElem = e.target,
+            clickedElemIsBrand = clickedElem.matches("div.scroll#brands div");
+        
+        if (clickedElemIsBrand) {
+            setFocusedList("models");
+            e.stopPropagation();
+        }
     });
 
 }
 focusedListClicks();
+
+function focusedListSwipes() {
+    let horizontalSwipeTarget = document.querySelector("div.scroll-container"),
+        listsContainer = document.querySelector("div.select"),
+        swipableList = document.querySelector("div.scrollOuter[data-list=\"models\"]");
+    touchDelta = 0;
+    
+    horizontalSwipeTarget.addEventListener("touchstart", function(e) {
+        selectedList = listsContainer.getAttribute("data-selected");
+        touchStart = e.targetTouches[0].screenX;
+
+        horizontalSwipeTarget.addEventListener("touchmove", function(e) {
+            touchNow = e.targetTouches[0].screenX;
+            touchDelta = touchNow - touchStart,
+            touchDeltaNegative = 0 - touchDelta;
+            
+            if ( selectedList === "models" && touchDelta > 0 && touchDelta < 100 ) {
+                swipableList.setAttribute("style","right: "+ touchDeltaNegative +"px;")
+            }
+            
+            if ( selectedList === "brands" && touchDelta < 0 && touchDelta > -100 ) {
+                swipableList.setAttribute("style","right: "+ touchDeltaNegative +"px;")
+            }
+        });
+    });
+
+    horizontalSwipeTarget.addEventListener("touchend", function(e) {
+        if ( touchDelta > 49 ) {
+            listsContainer.setAttribute("data-selected","brands");
+        }
+
+        if ( touchDelta < -50 ) {
+            listsContainer.setAttribute("data-selected","models");
+        }
+        
+        swipableList.setAttribute("style","")
+        touchStart = 0;
+        touchNow = 0;
+        touchDelta = 0;
+        
+        //horizontalSwipeTarget.removeEventListener("touchmove");
+    });
+}
+focusedListSwipes();
+
+// Scroll list to active phone on init
+function scrollToActive() {
+    try {
+        let phoneList = document.querySelector('div.scroll#phones'),
+            firstActivePhone = document.querySelector('div.phone-item[style*=border]'),
+            offset = firstActivePhone.offsetTop - 26;
+
+        phoneList.scrollTop = offset;
+    }
+    catch {}
+}
 
 // Set focused panel
 function setFocusedPanel() {
     let panelsContainer = document.querySelector("main.main"),
         primaryPanel = document.querySelector(".parts-primary"),
         secondaryPanel = document.querySelector(".parts-secondary"),
-        phonesList = document.querySelector("div#phones");
-
-    primaryPanel.addEventListener("click", function() {
-        let previouslyFocused = panelsContainer.getAttribute("data-focused-panel")
-
-        if ( previouslyFocused === 'secondary' ) {
-            panelsContainer.setAttribute("data-focused-panel","");
-        } else {
-            panelsContainer.setAttribute("data-focused-panel","primary");
-        }
+        phonesList = document.querySelector("div#phones"),
+        graphBox = document.querySelector("div.graph-sizer"),
+        mobileHelper = document.querySelector("tr.mobile-helper");
+    
+    panelsContainer.setAttribute("data-focused-panel","secondary");
+    
+    mobileHelper.addEventListener("click", function() {
+        panelsContainer.setAttribute("data-focused-panel","secondary");
     });
 
     secondaryPanel.addEventListener("click", function() {
-        panelsContainer.setAttribute("data-focused-panel","");
+        panelsContainer.setAttribute("data-focused-panel","secondary");
     });
-
-    phonesList.addEventListener("click", function(e) {
-        let thingClicked = e.target;
-
-        if ( thingClicked.matches(".phone-item, .phone-item span, .phone-item-add") ) {
-
+    
+    graphBox.addEventListener("click", function() {
+        let previousState = panelsContainer.getAttribute("data-focused-panel");
+        
+        if ( previousState === "primary") {
+            panelsContainer.setAttribute("data-focused-panel","secondary");
+        } else if ( previousState === "secondary" ) {
             panelsContainer.setAttribute("data-focused-panel","primary");
-            e.stopPropagation();
         }
+    });
+    
+    // Touch events
+    let verticalSwipeTargets = document.querySelectorAll("div.selector-tabs, input.search");
+    
+    verticalSwipeTargets.forEach(function(target) {
+        target.addEventListener("touchstart", function(e) {
+            focusedPanel = document.querySelector("main.main").getAttribute("data-focused-panel");
+
+            touchStart = e.targetTouches[0].screenY;
+
+            target.addEventListener("touchmove", function(e) {
+                touchNow = e.targetTouches[0].screenY;
+                touchDelta = touchNow - touchStart;
+
+                if ( focusedPanel === "secondary" && touchDelta > 0 && touchDelta < 200) {
+                    secondaryPanel.setAttribute("style", "top: " + touchDelta + "px;")
+                } else if ( focusedPanel === "primary" && touchDelta < 0 && touchDelta > -200) {
+                    secondaryPanel.setAttribute("style", "top: " + touchDelta + "px;")
+                }
+            });
+        });
+
+        target.addEventListener("touchend", function(e) {
+            if ( touchDelta > 49 ) {
+                panelsContainer.setAttribute("data-focused-panel","primary");
+            }
+
+            if ( touchDelta < -50 ) {
+                panelsContainer.setAttribute("data-focused-panel","secondary");
+            }
+
+            secondaryPanel.setAttribute("style", "")
+            touchStart = 0;
+            touchNow = 0;
+            touchDelta = 0;
+        });
+    
+        target.addEventListener("wheel", function(e) {
+            let wheelDelta = e.deltaY;
+
+            if (wheelDelta < -5) {
+                panelsContainer.setAttribute("data-focused-panel","primary");
+            }
+
+            if (wheelDelta > 5) {
+                panelsContainer.setAttribute("data-focused-panel","secondary");
+            }
+        });
     });
 }
 setFocusedPanel();
 
+// Blur focus from inputs on submit
+function blurFocus() {
+    let inputFields = document.querySelectorAll("input"),
+        body = document.querySelector("body");
+    
+    inputFields.forEach(function(field) {
+        field.addEventListener("keyup", function(e) {
+            if (e.keyCode === 13) {
+                field.blur();
+            }
+        });
+        
+        field.addEventListener("focus", function() {
+            body.setAttribute("data-input-state","focus");
+        });
+        
+        field.addEventListener("blur", function() {
+            body.setAttribute("data-input-state","blur");
+        });
+    });
+}
+blurFocus();
+
+// Add extra feature
+function addExtra() {
+    let extraButton = document.querySelector("div.select > div.selector-tabs > button.extra");
+    // Disable functions by config
+    if (!extraEnabled) {
+        extraButton.remove();
+        return;
+    }
+    if (!extraUploadEnabled) {
+        document.querySelector("div.extra-panel > div.extra-upload").style["display"] = "none";
+    }
+    if (!extraEQEnabled) {
+        document.querySelector("div.extra-panel > div.extra-eq").style["display"] = "none";
+    }
+    if (!extraToneGeneratorEnabled) {
+        document.querySelector("div.extra-panel > div.extra-tone-generator").style["display"] = "none";
+    }
+    // Show and hide extra panel
+    window.showExtraPanel = () => {
+        document.querySelector("div.select > div.selector-panel").style["display"] = "none";
+        document.querySelector("div.select > div.extra-panel").style["display"] = "flex";
+        document.querySelector("div.select").setAttribute("data-selected", "extra");
+        pushEventTag("clicked_equalizerTab", targetWindow);
+    };
+    window.hideExtraPanel = (selectedList) => {
+        document.querySelector("div.select > div.selector-panel").style["display"] = "flex";
+        document.querySelector("div.select > div.extra-panel").style["display"] = "none";
+        document.querySelector("div.select").setAttribute("data-selected", selectedList);
+    };
+    extraButton.addEventListener("click", showExtraPanel);
+    // Upload function
+    let uploadType = null;
+    let fileFR = document.querySelector("#file-fr");
+    document.querySelector("div.extra-upload > button.upload-fr").addEventListener("click", () => {
+        uploadType = "fr";
+        fileFR.click();
+    });
+    document.querySelector("div.extra-upload > button.upload-target").addEventListener("click", () => {
+        uploadType = "target";
+        fileFR.click();
+    });
+    let addOrUpdatePhone = (brand, phone, ch) => {
+        let phoneObj = asPhoneObj(brand, phone);
+        phoneObj.rawChannels = ch;
+        phoneObj.isDynamic = true;
+        let phoneObjs = brand.phoneObjs;
+        let oldPhoneObj = phoneObjs.filter(p => p.phone == phone.name)[0]
+        if (oldPhoneObj) {
+            oldPhoneObj.active && removePhone(oldPhoneObj);
+            phoneObj.id = oldPhoneObj.id;
+            phoneObjs[phoneObjs.indexOf(oldPhoneObj)] = phoneObj;
+            allPhones[allPhones.indexOf(oldPhoneObj)] = phoneObj;
+        } else {
+            brand.phones.push(phone);
+            phoneObjs.push(phoneObj);
+            allPhones.push(phoneObj);
+        }
+        updatePhoneSelect();
+        return phoneObj;
+    };
+    fileFR.addEventListener("change", (e) => {
+        let file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            let name = file.name.replace(/\.[^\.]+$/, "");
+            let phone = { name: name };
+            let ch = [tsvParse(e.target.result)];
+            if (ch[0].length < 128) {
+                alert("Parse frequence response file failed: invalid format.");
+                return;
+            }
+            ch[0] = Equalizer.interp(f_values, ch[0]);
+            if (uploadType === "fr") {
+                name.match(/ R$/) && ch.splice(0, 0, null);
+                let phoneObj = addOrUpdatePhone(brandMap.Uploaded, phone, ch);
+                showPhone(phoneObj, false);
+            } else if (uploadType === "target") {
+                let fullName = name + (name.match(/ Target$/i) ? "" : " Target");
+                let existsTargets = targets.reduce((a, b) => a.concat(b.files), []).map(f => f += " Target");
+                if (existsTargets.indexOf(fullName) >= 0) {
+                    alert("This target already exists on this tool, please select it instead of upload.");
+                    return;
+                }
+                let phoneObj = {
+                    isTarget: true,
+                    brand: brandTarget,
+                    dispName: name,
+                    phone: name,
+                    fullName: fullName,
+                    fileName: fullName,
+                    rawChannels: ch,
+                    isDynamic: true,
+                    id: -brandTarget.phoneObjs.length
+                };
+                showPhone(phoneObj, true);
+            }
+        };
+        reader.readAsText(file);
+    });
+    // EQ Function
+    let eqPhoneSelect = document.querySelector("div.extra-eq select[name='phone']");
+    let filtersContainer = document.querySelector("div.extra-eq > div.filters");
+    let fileFiltersImport = document.querySelector("#file-filters-import");
+    let filterEnabledInput, filterTypeSelect,
+        filterFreqInput, filterQInput, filterGainInput;
+    let eqBands = extraEQBands;
+    let updateFilterElements = () => {
+        let node = filtersContainer.querySelector("div.filter");
+        while (filtersContainer.childElementCount < eqBands) {
+            let clone = node.cloneNode(true);
+            clone.querySelector("input[name='enabled']").value = "true";
+            clone.querySelector("select[name='type']").value = "PK";
+            clone.querySelector("input[name='freq']").value = "0";
+            clone.querySelector("input[name='q']").value = "0";
+            clone.querySelector("input[name='gain']").value = "0";
+            filtersContainer.appendChild(clone);
+        }
+        while (filtersContainer.childElementCount > eqBands) {
+            filtersContainer.children[filtersContainer.childElementCount-1].remove();
+        }
+        filterEnabledInput = filtersContainer.querySelectorAll("input[name='enabled']");
+        filterTypeSelect = filtersContainer.querySelectorAll("select[name='type']");
+        filterFreqInput = filtersContainer.querySelectorAll("input[name='freq']");
+        filterQInput = filtersContainer.querySelectorAll("input[name='q']");
+        filterGainInput = filtersContainer.querySelectorAll("input[name='gain']");
+        filtersContainer.querySelectorAll("input,select").forEach(el => {
+            el.removeEventListener("input", applyEQ);
+            el.addEventListener("input", applyEQ);
+        });
+    };
+    let elemToFilters = (includeAll) => {
+        // Collect filters from ui
+        let filters = [];
+        for (let i = 0; i < eqBands; ++i) {
+            let disabled = !filterEnabledInput[i].checked;
+            let type = filterTypeSelect[i].value;
+            let freq = parseInt(filterFreqInput[i].value) || 0;
+            let q = parseFloat(filterQInput[i].value) || 0;
+            let gain = parseFloat(filterGainInput[i].value) || 0;
+            if (!includeAll && (disabled || !type || !freq || !q || !gain)) {
+                continue;
+            }
+            filters.push({ disabled, type, freq, q, gain });
+        }
+        return filters;
+    };
+    let filtersToElem = (filters) => {
+        // Set filters to ui
+        let filtersCopy = filters.map(f => f);
+        while (filtersCopy.length < eqBands) {
+            filtersCopy.push({ type: "PK", freq: 0, q: 0, gain: 0 });
+        }
+        if (filtersCopy.length > eqBands) {
+            eqBands = Math.min(filtersCopy.length, extraEQBandsMax);
+            filtersCopy = filtersCopy.slice(0, eqBands);
+            updateFilterElements();
+        }
+        filtersCopy.forEach((f, i) => {
+            filterEnabledInput[i].checked = !f.disabled;
+            filterTypeSelect[i].value = f.type;
+            filterFreqInput[i].value = f.freq;
+            filterQInput[i].value = f.q;
+            filterGainInput[i].value = f.gain;
+        });
+    };
+    let applyEQHandle = null;
+    let applyEQExec = () => {
+        // Create and show phone with eq applied
+        let activeElem = document.activeElement;
+        let phoneSelected = eqPhoneSelect.value;
+        let filters = elemToFilters();
+        if (filters.length && !phoneSelected) {
+            let firstPhone = eqPhoneSelect.querySelectorAll("option")[1];
+            if (firstPhone) {
+                phoneSelected = eqPhoneSelect.value = firstPhone.value;
+            }
+        }
+        let phoneObj = phoneSelected && activePhones.filter(
+            p => p.fullName == phoneSelected)[0];
+        if (!phoneObj || (!filters.length && !phoneObj.eq)) {
+            return; // Allow empty filters if eq is applied before
+        }
+        let phoneEQ = { name: phoneObj.phone + " EQ" };
+        let phoneObjEQ = addOrUpdatePhone(phoneObj.brand, phoneEQ,
+            phoneObj.rawChannels.map(c => c ? Equalizer.apply(c, filters) : null));
+        phoneObj.eq = phoneObjEQ;
+        phoneObjEQ.eqParent = phoneObj;
+        showPhone(phoneObjEQ, false);
+        activeElem.focus();
+    };
+    let applyEQ = () => {
+        clearTimeout(applyEQHandle);
+        applyEQHandle = setTimeout(applyEQExec, 100);
+    };
+    window.updateEQPhoneSelect = () => {
+        let oldValue = eqPhoneSelect.value;
+        let optionValues = activePhones.filter(p =>
+            !p.isTarget && !p.fullName.match(/ EQ$/)).map(p => p.fullName);
+        Array.from(eqPhoneSelect.children).slice(1).forEach(c => eqPhoneSelect.removeChild(c));
+        optionValues.forEach(value => {
+            let optionElem = document.createElement("option");
+            optionElem.setAttribute("value", value);
+            optionElem.innerText = value;
+            eqPhoneSelect.appendChild(optionElem);
+        });
+        eqPhoneSelect.value = (optionValues.indexOf(oldValue) >= 0) ? oldValue : "";
+    };
+    updateFilterElements();
+    eqPhoneSelect.addEventListener("input", applyEQ);
+    // Add new filter
+    document.querySelector("div.extra-eq button.add-filter").addEventListener("click", () => {
+        eqBands = Math.min(eqBands + 1, extraEQBandsMax);
+        updateFilterElements();
+    });
+    // Remove last filter
+    document.querySelector("div.extra-eq button.remove-filter").addEventListener("click", () => {
+        eqBands = Math.max(eqBands - 1, 1);
+        updateFilterElements();
+        applyEQ(); // May removed effective filter
+    });
+    // Sort filters by frequency
+    document.querySelector("div.extra-eq button.sort-filters").addEventListener("click", () => {
+        filtersToElem(elemToFilters(true).sort((a, b) =>
+            (a.freq || Infinity) - (b.freq || Infinity)));
+    });
+    // Import filters
+    document.querySelector("div.extra-eq button.import-filters").addEventListener("click", () => {
+        fileFiltersImport.click();
+    });
+    fileFiltersImport.addEventListener("change", (e) => {
+        // Import filters callback
+        let file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            let settings = e.target.result;
+            let filters = settings.split("\n").map(l => {
+                let r = l.match(/Filter\s*\d+:\s*(\S+)\s*(\S+)\s*Fc\s*(\S+)\s*Hz\s*Gain\s*(\S+)\s*dB(\s*Q\s*(\S+))?/);
+                if (!r) { return undefined; }
+                let disabled = (r[1] !== "ON");
+                let type = r[2];
+                let freq = parseInt(r[3]) || 0;
+                let gain = parseFloat(r[4]) || 0;
+                let q = parseFloat(r[6]) || 0;
+                if (type === "LS" || type === "HS") {
+                    type += "Q";
+                    q = q || 0.707;
+                } else if (type === "LSC" || type === "HSC") {
+                    // Equalizer APO use LSC/HSC instead of LSQ/HSQ
+                    type = type.substr(0, 2) + "Q";
+                }
+                return { disabled, type, freq, q, gain };
+            }).filter(f => f);
+            while (filters.length > 0) {
+                // Remove empty tail filters
+                let lastFilter = filters[filters.length-1];
+                if (!lastFilter.freq && !lastFilter.q && !lastFilter.gain) {
+                    filters.pop(); 
+                } else {
+                    break;
+                }
+            }
+            if (filters.length > 0) {
+                filtersToElem(filters);
+                applyEQ();
+            } else {
+                alert("Parse filters file failed: no filter found.");
+            }
+        };
+        reader.readAsText(file);
+    });
+    // Export filters
+    document.querySelector("div.extra-eq button.export-filters").addEventListener("click", () => {
+        let phoneSelected = eqPhoneSelect.value;
+        let phoneObj = phoneSelected && activePhones.filter(
+            p => p.fullName == phoneSelected && p.eq)[0];
+        let filters = elemToFilters(true);
+        if (!phoneObj || !filters.length) {
+            alert("Please select model and add atleast one filter before export.");
+            return;
+        }
+        let preamp = Equalizer.calc_preamp(
+            phoneObj.rawChannels.filter(c => c)[0],
+            phoneObj.eq.rawChannels.filter(c => c)[0]);
+        let settings = "Preamp: " + preamp.toFixed(1) + " dB\r\n";
+        filters.forEach((f, i) => {
+            let on = (!f.disabled && f.type && f.freq && f.gain && f.q) ? "ON" : "OFF";
+            let type = f.type;
+            if (type === "LSQ" || type === "HSQ") {
+                // Equalizer APO use LSC/HSC instead of LSQ/HSQ
+                type = type.substr(0, 2) + "C";
+            }
+            settings += ("Filter " + (i+1) + ": " + on + " " + type + " Fc " +
+                f.freq.toFixed(0) + " Hz Gain " + f.gain.toFixed(1) + " dB Q " +
+                f.q.toFixed(3) + "\r\n");
+        });
+        let exportElem = document.querySelector("#file-filters-export");
+        exportElem.href && URL.revokeObjectURL(exportElem.href);
+        exportElem.href = URL.createObjectURL(new Blob([settings]));
+        exportElem.download = phoneObj.fullName.replace(/^Uploaded /, "") + " Filters.txt";
+        exportElem.click();
+    });
+    // Export filters as graphic eq (for wavelet)
+    document.querySelector("div.extra-eq button.export-graphic-filters").addEventListener("click", () => {
+        let phoneSelected = eqPhoneSelect.value;
+        let phoneObj = phoneSelected && activePhones.filter(
+            p => p.fullName == phoneSelected && p.eq)[0] || { fullName: "Unnamed" };
+        let filters = elemToFilters();
+        if (!filters.length) {
+            alert("Please add atleast one filter before export.");
+            return;
+        }
+        let graphicEQ = Equalizer.as_graphic_eq(filters);
+        let settings = "GraphicEQ: " + graphicEQ.map(([f, gain]) =>
+            f.toFixed(0) + " " + gain.toFixed(1)).join("; ");
+        let exportElem = document.querySelector("#file-filters-export");
+        exportElem.href && URL.revokeObjectURL(exportElem.href);
+        exportElem.href = URL.createObjectURL(new Blob([settings]));
+        exportElem.download = phoneObj.fullName.replace(/^Uploaded /, "") + " Graphic Filters.txt";
+        exportElem.click();
+    });
+    // Readme
+    document.querySelector("div.extra-eq button.readme").addEventListener("click", () => {
+        alert("1. If you want to AutoEQ model A to B, display A B and remove target\n" +
+            "2. Add/Remove bands before AutoEQ may give you a better result\n" +
+            "3. Curve of PK filter close to 20K is implementation dependent, avoid such filter if you're not sure how your DSP software works\n" +
+            "4. EQ treble require resonant peak matching and fine tune by ear, keep treble untouched if you're not sure how to do that\n" +
+            "5. Tone generator is useful to find actual location of peaks and dips, notice the web version may not work on some platform\n");
+    });
+    // AutoEQ
+    let autoEQFromInput = document.querySelector("div.extra-eq input[name='autoeq-from']");
+    let autoEQToInput = document.querySelector("div.extra-eq input[name='autoeq-to']");
+    autoEQFromInput.value = Equalizer.config.AutoEQRange[0].toFixed(0);
+    autoEQToInput.value = Equalizer.config.AutoEQRange[1].toFixed(0);
+    document.querySelector("div.extra-eq button.autoeq").addEventListener("click", () => {
+        // Generate filters automatically
+        let phoneSelected = eqPhoneSelect.value;
+        if (!phoneSelected) {
+            let firstPhone = eqPhoneSelect.querySelectorAll("option")[1];
+            if (firstPhone) {
+                phoneSelected = eqPhoneSelect.value = firstPhone.value;
+            }
+        }
+        let phoneObj = phoneSelected && activePhones.filter(
+            p => p.fullName == phoneSelected)[0];
+        let targetObj = (activePhones.filter(p => p.isTarget)[0] ||
+            activePhones.filter(p => p !== phoneObj && !p.isTarget)[0]);
+        if (!phoneObj || !targetObj) {
+            alert("Please select model and target, if there are no target and multiple models are displayed then the second one will be selected as target.");
+            return;
+        }
+        let autoEQOverlay = document.querySelector(".extra-eq-overlay");
+        autoEQOverlay.style.display = "block";
+        setTimeout(() => {
+            let autoEQFrom = Math.min(Math.max(parseInt(autoEQFromInput.value) || 0, 20), 20000);
+            let autoEQTo = Math.min(Math.max(parseInt(autoEQToInput.value) || 0, autoEQFrom), 20000);
+            Equalizer.config.AutoEQRange = [autoEQFrom, autoEQTo];
+            let phoneCHs = (phoneObj.rawChannels.filter(c => c)
+                .map(ch => ch.map(([f, v]) => [f, v + phoneObj.norm])));
+            let phoneCH = (phoneCHs.length > 1) ? avgCurves(phoneCHs) : phoneCHs[0];
+            let targetCH = targetObj.rawChannels.filter(c => c)[0].map(([f, v]) => [f, v + targetObj.norm]);
+            let filters = Equalizer.autoeq(phoneCH, targetCH, eqBands);
+            filtersToElem(filters);
+            applyEQ();
+            autoEQOverlay.style.display = "none";
+        }, 100);
+    });
+    // Tone Generator
+    let toneGeneratorFromInput = document.querySelector("div.extra-tone-generator input[name='tone-generator-from']");
+    let toneGeneratorToInput = document.querySelector("div.extra-tone-generator input[name='tone-generator-to']");
+    let toneGeneratorSlider = document.querySelector("div.extra-tone-generator input[name='tone-generator-freq']");
+    let toneGeneratorPlayButton = document.querySelector("div.extra-tone-generator .play");
+    let toneGeneratorText = document.querySelector("div.extra-tone-generator .freq-text");
+    let toneGeneratorContext = null;
+    let toneGeneratorOsc = null;
+    let toneGeneratorTimeoutHandle = null
+    toneGeneratorSlider.addEventListener("input", () => {
+        let from = Math.min(Math.max(parseInt(toneGeneratorFromInput.value) || 0, 20), 20000);
+        let to = Math.min(Math.max(parseInt(toneGeneratorToInput.value) || 0, from), 20000);
+        let position = parseFloat(toneGeneratorSlider.value) || 0;
+        let freq = Math.round(Math.exp( // Slider move in log scale
+            Math.log(from) + (Math.log(to) - Math.log(from)) * position));
+        toneGeneratorText.innerText = freq;
+        if (toneGeneratorOsc) {
+            let t = toneGeneratorContext.currentTime;
+            toneGeneratorOsc.frequency.cancelScheduledValues(t);
+            toneGeneratorOsc.frequency.setTargetAtTime(freq, t, 0.2); // Smoother transition but also delay
+        }
+    });
+    toneGeneratorPlayButton.addEventListener("click", () => {
+        if (toneGeneratorOsc) {
+            toneGeneratorOsc.stop();
+            toneGeneratorOsc = null;
+            toneGeneratorPlayButton.innerText = "Play";
+        } else {
+            if (!toneGeneratorContext) {
+                if (!window.AudioContext) {
+                    alert("Web audio api is disabled, please enable it if you want to use tone generator.");
+                    return;
+                }
+                toneGeneratorContext = new AudioContext();
+            }
+            toneGeneratorOsc = toneGeneratorContext.createOscillator();
+            toneGeneratorOsc.type = "sine";
+            toneGeneratorOsc.frequency.value = parseInt(toneGeneratorText.innerText);
+            toneGeneratorOsc.connect(toneGeneratorContext.destination);
+            toneGeneratorOsc.start();
+            toneGeneratorPlayButton.innerText = "Stop";
+        }
+    });
+    
+}
+addExtra();
+
+// Add accessories to the bottom of the page, if configured
+function addAccessories() {
+    let accessoriesBar = document.querySelector("div.accessories"),
+        accessoriesContainer = document.createElement("aside");
+    
+    accessoriesContainer.innerHTML = whichAccessoriesToUse;
+    accessoriesBar.append(accessoriesContainer);
+}
+if (accessories) { addAccessories(); }
+
+// Add header to alt layout
+function addHeader() {
+    let graphToolContainer = document.querySelector("div.graphtool"),
+        altHeaderElem = document.createElement("header"),
+        headerButton = document.createElement("button"),
+        headerLogoElem = document.createElement("div"),
+        headerLogoLink = document.createElement("a"),
+        headerLogoImg = document.createElement("img"),
+        headerLogoSpan = document.createElement("span"),
+        linksList = document.createElement("ul");
+    
+    headerButton.className = "header-button";
+    headerLogoElem.className = "logo";
+    headerLogoLink.setAttribute('href', site_url);
+    if (headerLogoText) {
+        headerLogoSpan.innerText = headerLogoText;
+        headerLogoLink.append(headerLogoSpan);
+    } else if (headerLogoImgUrl) {
+        headerLogoImg.setAttribute("src", headerLogoImgUrl);
+        headerLogoLink.append(headerLogoImg);
+    }
+    
+    altHeaderElem.append(headerButton);
+    headerLogoElem.append(headerLogoLink);
+    altHeaderElem.setAttribute("data-links", "");
+    altHeaderElem.append(headerLogoElem);
+
+    altHeaderElem.className = "header";
+    graphToolContainer.prepend(altHeaderElem);
+    
+    linksList.className = "header-links";
+    altHeaderElem.append(linksList);
+    
+    headerLinks.forEach(function(link) {
+        let linkContainerElem = document.createElement("li"),
+            linkElem = document.createElement("a");
+        
+        linkElem.setAttribute("href", link.url);
+        if ( alt_header_new_tab ) { linkElem.setAttribute("target", "_blank"); }
+        linkElem.textContent = link.name;
+        linkContainerElem.append(linkElem);
+        linksList.append(linkContainerElem);
+    })
+    
+    headerButton.addEventListener("click", function() {
+        let headerLinksState = altHeaderElem.getAttribute("data-links");
+        
+        if (headerLinksState === "expanded") {
+            altHeaderElem.setAttribute("data-links", "collapsed");
+        } else {
+            altHeaderElem.setAttribute("data-links", "expanded");
+        }
+    });
+}
+if (alt_layout && alt_header) { addHeader(); }
+
+// Add external links to bar at bottom of page, if configured
+function addExternalLinks() {
+    const externalLinksBar = document.querySelector("div.external-links");
+
+    linkSets.forEach(function(set) {
+        let setLabelHtml = document.createElement("span"),
+            setLabelText = set.label,
+            links = set.links;
+        
+        setLabelHtml.textContent = setLabelText;
+        externalLinksBar.append(setLabelHtml);
+        
+        links.forEach(function(link) {
+            let linkHtml = document.createElement("a"),
+                linkName = link.name,
+                linkUrl = link.url;
+            
+            linkHtml.textContent = linkName;
+            linkHtml.setAttribute("href", linkUrl);
+            externalLinksBar.append(linkHtml);
+        });
+    });
+}
+if (externalLinksBar) { addExternalLinks(); }
+
+// Add tutorial to alt layout
+function addTutorial() {
+    let partsPrimary = document.querySelector("section.parts-primary")
+        graphContainer = document.querySelector("div.graph-sizer"),
+        manageContainer = document.querySelector("div.manage"),
+        overlayContainer = document.createElement("div"),
+        buttonContainer = document.createElement("div"),
+        descriptionContainer = document.createElement("div"),
+        zoomButtons = document.querySelectorAll("div.zoom button");
+    
+    overlayContainer.className = "tutorial-overlay";
+    graphContainer.prepend(overlayContainer);
+    
+    buttonContainer.className = "tutorial-buttons";
+    descriptionContainer.className = "tutorial-description";
+    
+    manageContainer.prepend(descriptionContainer);
+    manageContainer.prepend(buttonContainer);
+    
+    tutorialDefinitions.forEach(function(def) {
+        let defOverlay = document.createElement("div"),
+            defButton = document.createElement("button"),
+            defDescription = document.createElement("article"),
+            defDescriptionCopy = document.createElement("p");
+        
+        defOverlay.setAttribute("tutorial-def", def.name);
+        defOverlay.setAttribute("tutorial-on", "false");
+        defOverlay.className = "overlay-segment";
+        defOverlay.setAttribute("style", "flex-basis: "+ def.width +";")
+        overlayContainer.append(defOverlay);
+        
+        defButton.setAttribute("tutorial-def", def.name);
+        defButton.setAttribute("tutorial-on", "false");
+        defButton.className = "button-segment";
+        defButton.textContent = def.name;
+        buttonContainer.append(defButton);
+        
+        defDescription.setAttribute("tutorial-def", def.name);
+        defDescription.setAttribute("tutorial-on", "false");
+        defDescription.className = "description-segment";
+        defDescriptionCopy.innerHTML = def.description;
+        defDescription.append(defDescriptionCopy);
+        descriptionContainer.append(defDescription);
+        
+        defButton.addEventListener("click", function() {
+            let activeStatus = defButton.getAttribute("tutorial-on"),
+                activeTutorialElements = document.querySelectorAll("[tutorial-on='true']"),
+                activeOverlay = document.querySelector("div.overlay-segment[tutorial-on='true']"),
+                activeButton = document.querySelector("button.button-segment[tutorial-on='true']"),
+                activeDescription = document.querySelector("article.description-segment[tutorial-on='true']");
+            
+            if (activeOverlay) { activeOverlay.setAttribute("tutorial-on", "false"); }
+            if (activeButton) { activeButton.setAttribute("tutorial-on", "false"); }
+            
+            if (activeStatus === "false") {
+                if (activeDescription) { activeDescription.setAttribute("tutorial-on", "false"); }
+                
+                defOverlay.setAttribute("tutorial-on", "true");
+                defButton.setAttribute("tutorial-on", "true");
+                defDescription.setAttribute("tutorial-on", "true");
+                
+                partsPrimary.setAttribute("tutorial-active", "true");
+                disableZoom();
+                
+                // Analytics event
+                if (analyticsEnabled) { pushEventTag("tutorial_activated", targetWindow, def.name); }
+            } else {
+                partsPrimary.setAttribute("tutorial-active", "false");
+            }
+        });
+        
+        defButton.addEventListener("mouseover", function() {
+            defOverlay.setAttribute("tutorial-hover", "true");
+        });
+        
+        defButton.addEventListener("mouseout", function() {
+            defOverlay.setAttribute("tutorial-hover", "false");
+        });
+        
+        defButton.addEventListener("touchend", function() {
+            defOverlay.setAttribute("tutorial-hover", "false");
+        });
+    });
+    
+    // Disable zoom if tutorial is engaged
+    function disableZoom() {
+        let activeZoomButton = document.querySelector("div.zoom button.selected");
+        
+        if (activeZoomButton) { activeZoomButton.click(); }
+    }
+    
+    // Disable tutorial if zoom is engaged
+    zoomButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            let tutorialState = document.querySelector("section.parts-primary").getAttribute("tutorial-active");
+            
+            if (button.classList.contains("selected") && tutorialState === "true") {
+                let activeOverlay = document.querySelector("div.overlay-segment[tutorial-on='true']"),
+                    activeButton = document.querySelector("button.button-segment[tutorial-on='true']"),
+                    activeDescription = document.querySelector("article.description-segment[tutorial-on='true']");
+                
+                document.querySelector("section.parts-primary").setAttribute("tutorial-active","false");
+                activeOverlay.setAttribute("tutorial-on", "false");
+                activeButton.setAttribute("tutorial-on", "false");
+            }
+        });
+    });
+}
+if (alt_tutorial) { addTutorial(); }
+
 // Set active graph site link
 function setActiveDatabase() {
-    let url = window.top.location.href,
-        dbLinks = document.querySelectorAll("div.more-graph-sites a");
+    let url = targetWindow.location.href,
+        dbLinks = document.querySelectorAll("div.external-links a");
 
     dbLinks.forEach(function(link) {
         let linkUrl = link.getAttribute("href");
 
         if ( url.includes(linkUrl) ) {
-            link.setAttribute("class","active");
+            link.setAttribute("class", "active");
         }
     });
 }
 setActiveDatabase();
 
+// Expand / collapse function
+function toggleExpandCollapse() {
+    const graphIsIframe = (window.top !== window.self) ? true:false,
+        graphBody = document.querySelector("body"),
+        parentBody = window.top.document.querySelector("body"),
+        expandCollapseButton = document.querySelector("button#expand-collapse");
+    
+    
+    if ( graphIsIframe) { graphBody.setAttribute("data-graph-frame", "collapsed"); }
+    
+    
+    if ( graphIsIframe && expandableOnly ) {
+        const expandOnlyMax = ( expandableOnly === true ) ? 1000000:expandableOnly,
+            expandOnlyStyle = document.createElement("style"),
+            expandOnlyCss = `
+            @media ( max-width: `+ expandOnlyMax +`px ) {
+                body[data-expandable="only"][data-graph-frame="collapsed"] {
+                    overflow: hidden;
+                }
 
-//Theme Chooser
-function themeChooser() {
-  var element = document.body;
-  element.classList.toggle("dark-mode");
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    width: 100%;
+                    height: 100%;
+                    padding: 0;
+
+                    background-color: var(--background-color);
+                    background-color: transparent;
+                    border: none;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse:after {
+                    position: absolute;
+
+                    content: 'Tap to launch graph tool';
+
+                    color: var(--font-color-primary);
+                    font-family: var(--font-secondary);
+                    font-size: 11px;
+                    line-height: 1em;
+                    text-transform: uppercase;
+
+                    pointer-events: none;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    width: 100%;
+                    height: 100%;
+
+                    background-color: transparent;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse:before {
+                    position: relative;
+                    z-index: 1;
+
+                    transform: scale(7);
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse:after {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+
+                    content: '';
+
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+
+                    background-color: var(--background-color);
+
+                    opacity: 0.9;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] section.parts-primary {
+                    flex: 100% 1 1;
+                    overflow: hidden;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] section.parts-secondary {
+                    display: none;
+                }
+            }
+        `;
+        
+        expandOnlyStyle.textContent = expandOnlyCss;
+        expandOnlyStyle.setAttribute("type", "text/css");
+        document.querySelector("body").append(expandOnlyStyle);
+        
+        graphBody.setAttribute("data-expandable", "only");
+    } else if ( graphIsIframe && expandable ) {
+        graphBody.setAttribute("data-expandable", "true");
+    }
+    
+    const parentStyle = window.top.document.createElement("style"),
+          parentCss = `
+            :root {
+                --header-height: `+ headerHeight +`;
+            }
+            
+            body[data-graph-frame="expanded"] {
+                width: 100%;
+                height: 100%;
+                max-height: -webkit-fill-available;
+                overflow: hidden;
+            }
+            
+            body[data-graph-frame="expanded"] button.graph-frame-collapse {
+                display: inherit;
+            }
+            
+            body[data-graph-frame="expanded"] iframe#GraphTool {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                
+                width: 100% !important;
+                height: calc(100% - var(--header-height)) !important;
+
+                animation-name: graph-tool-expand;
+                animation-duration: 0.15s;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-out;
+                animation-fill-mode: forwards;
+            }
+
+            @keyframes graph-tool-expand {
+                0% {
+                    position: relative;
+                    opacity: 1.0;
+                    transform: scale(1.0);
+                }
+                48% {
+                    position: relative;
+                    opacity: 0.0;
+                    transform: scale(0.9);
+                }
+                50% {
+                    position: fixed;
+                    opacity: 0.0;
+                    transform: scale(0.9);
+                }
+                52% {
+                    position: fixed;
+                    opacity: 0.0;
+                    transform: scale(0.9);
+                }
+                100% {
+                    position: fixed;
+                    opacity: 1.0;
+                    transform: scale(1.0);
+                }
+            }`;
+    
+    parentStyle.textContent = parentCss;
+    parentStyle.setAttribute("type", "text/css");
+    parentBody.append(parentStyle);
+    
+    expandCollapseButton.addEventListener("click", function(e) {
+        let frameState = document.querySelector("body").getAttribute("data-graph-frame");
+        
+        if ( frameState === "expanded" ) {
+            graphBody.setAttribute("data-graph-frame", "collapsed");
+            parentBody.setAttribute("data-graph-frame", "collapsed");
+        } else {
+            graphBody.setAttribute("data-graph-frame", "expanded");
+            parentBody.setAttribute("data-graph-frame", "expanded");
+        }
+        
+        e.stopPropagation();
+    });
+        
 }
+
+if ( expandable && accessDocumentTop ) { toggleExpandCollapse(); }

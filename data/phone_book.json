@@ -33,7 +33,7 @@
 	},
 	{
    	"name":   "HarmonicDyne",
-    	"phones": [ "Zeus" ]
+    	"phones": [ "Athena","Zeus" ]
 	},
 	{
    	"name":   "Hifiman",
@@ -76,7 +76,11 @@
     	"phones": [ "MDR-CD900ST" ]
 	},
 	{
+		"name":   "Thieaudio",
+			"phones": [ "Ghost" ]
+	},
+	{
    	"name":   "ZMF",
-    	"phones": [ {"name":"Atrium","file":["Atrium (Univ Perf Leather - Solid Mesh)","Atrium (Auteur Perf Leather - Solid Mesh)"]}, {"name":"Caldera","file":["Caldera","Caldera Cowhide","Caldera Suede"]}, {"name":"Verite","file":["Verite - BE2", "Verite - BE2 Hybrid", "Verite - Perf Suede", "Verite - Univ Perf Leather"]} ]
+    	"phones": [ {"name":"Atrium","file":["Atrium (Univ Perf Leather - Solid Mesh)","Atrium (Auteur Perf Leather - Solid Mesh)"]}, {"name":"Caldera","file":["Caldera","Caldera Cowhide Thin","Caldera Suede Thick"]}, {"name":"Verite","file":["Verite - BE2", "Verite - BE2 Hybrid", "Verite - Perf Suede", "Verite - Univ Perf Leather"]} ]
 	}
 ]

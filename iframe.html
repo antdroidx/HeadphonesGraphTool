@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+        <style type="text/css">
+            html {
+                width: 100%;
+                height: 100%;
+            }
+            
+            body {
+                width: 100%;
+                height: 100%;
+                margin: 82px 0 0 0;
+            }
+            
+            header {
+                position: fixed;
+                top: 0;
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                box-sizing: border-box;
+                width: 100%;
+                height: 50px;
+                padding: 6px;
+                
+                background-color: #000;
+                
+                color: #fff;
+            }
+            
+            button.graph-frame-expand,
+            button.graph-frame-collapse {
+                height: 38px;
+                width: 44px;
+                margin-left: auto;
+                
+                background-size: 30px;
+                background-repeat: no-repeat;
+                background-position: center;
+                border: none;
+                border-radius: 4px;
+                outline: none;
+                
+                cursor: pointer;
+            }
+            
+            button.graph-frame-expand {
+                background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23252627;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M24.64,95.36l24.75-3.54-7.07-7.07,3.54-3.54a5,5,0,0,0,0-7.07h0a5,5,0,0,0-7.07,0l-3.54,3.54-7.07-7.07Z'/%3E%3Cpath class='cls-1' d='M95.36,24.64,70.61,28.18l7.07,7.07-3.54,3.54a5,5,0,0,0,0,7.07h0a5,5,0,0,0,7.07,0l3.54-3.54,7.07,7.07Z'/%3E%3Cpath class='cls-1' d='M42.32,35.25l7.07-7.07L24.64,24.64l3.54,24.75,7.07-7.07,3.54,3.54a5,5,0,0,0,7.07,0h0a5,5,0,0,0,0-7.07Z'/%3E%3Cpath class='cls-1' d='M95.36,95.36,91.82,70.61l-7.07,7.07-3.54-3.54a5,5,0,0,0-7.07,0h0a5,5,0,0,0,0,7.07l3.54,3.54-7.07,7.07Z'/%3E%3C/svg%3E");
+            }
+            
+            button.graph-frame-collapse {
+                display: none;
+                background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23252627;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M52.93,67.07,28.18,70.61l7.07,7.07-3.53,3.53a5,5,0,0,0,0,7.07h0a5,5,0,0,0,7.07,0l3.53-3.53,7.07,7.07Z'/%3E%3Cpath class='cls-1' d='M67.07,52.93l24.75-3.54-7.07-7.07,3.53-3.53a5,5,0,0,0,0-7.07h0a5,5,0,0,0-7.07,0l-3.53,3.53-7.07-7.07Z'/%3E%3C/svg%3E");
+            }
+            
+            div.expand-button-container {
+                display: flex;
+                width: 80vw;
+                margin: 32px auto;
+            }
+            
+            div.copy-container {
+                width: 80vw;
+                margin: 32px auto;
+            }
+            
+            div.sample-iframe-container {
+                width: 80vw;
+                height: 80vh;
+                margin: 32px auto;
+            }
+        </style>
+    </head>
+    
+    <body data-graph-frame="collapsed">
+        <header>
+            Header
+        </header>
+        <!--<div class="expand-button-container">
+            <button class="graph-frame-expand"></button>
+        </div>-->
+        
+        <div class="sample-iframe-container">
+            <iframe id="GraphTool" class="frame" src="graph.html" allowfullscreen style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+     
+    </body>
+</html>
+
