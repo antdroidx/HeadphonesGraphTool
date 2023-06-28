@@ -37,7 +37,7 @@
 	},
 	{
    	"name":   "Hifiman",
-    	"phones": [ "Arya", "HE400SE", {"name":"HE6SE V2","file":["HE6SE V2", "HE6SE V2 Grill Mod", "HE6SE V2 Dekoni TH610 Hybrid", "HE6SE V2 Dekoni Leather", "HE6SE V2 Defean Hybrid"]}, "Susvara" ]
+    	"phones": [ "Arya", "Deva Pro", "Deva Pro No Grill", "HE400SE", {"name":"HE6SE V2","file":["HE6SE V2", "HE6SE V2 Grill Mod", "HE6SE V2 Dekoni TH610 Hybrid", "HE6SE V2 Dekoni Leather", "HE6SE V2 Defean Hybrid"]}, "Susvara" ]
   	},
 		{
 			"name":   "Kennerton",
@@ -54,6 +54,10 @@
 	{
    	"name":   "Meze",
     	"phones": [ {"name":"Empyrean","file":["Empyrean Leather", "Empyrean Suede"]} ]
+	},
+	{
+   	"name":   "NAN",
+    	"phones": [ "NAN-6" ]
 	},
 	{
 		"name":   "Ovidius",
