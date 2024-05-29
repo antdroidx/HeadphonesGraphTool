@@ -93,6 +93,6 @@
 	},
 	{
    	"name":   "ZMF",
-    	"phones": [ {"name":"Atrium","file":["Atrium (Univ Perf Leather - Solid Mesh)","Atrium (Auteur Perf Leather - Solid Mesh)"]}, {"name":"Caldera","file":["Caldera","Caldera Cowhide Thin","Caldera Suede Thick"]}, {"name":"Verite","file":["Verite - BE2", "Verite - BE2 Hybrid", "Verite - Perf Suede", "Verite - Univ Perf Leather"]} ]
+    	"phones": [ {"name":"Atrium","file":["Atrium (Univ Perf Leather - Solid Mesh)","Atrium (Auteur Perf Leather - Solid Mesh)"]}, "Atrium Closed", "Bokeh", {"name":"Caldera","file":["Caldera","Caldera Cowhide Thin","Caldera Suede Thick"]}, "Caldera Closed", {"name":"Verite","file":["Verite - BE2", "Verite - BE2 Hybrid", "Verite - Perf Suede", "Verite - Univ Perf Leather"]} ]
 	}
 ]
