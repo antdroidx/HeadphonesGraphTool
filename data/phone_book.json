@@ -29,7 +29,7 @@
 	},
 	{
    	"name":   "Emu",
-    	"phones": [ "Rosewood", "Walnut", "Walnut 3.5mm", "Walnut Mod", "Walnut Mod2" ]
+    	"phones": [ "Rosewood", "Rosewood Yaxi", "Walnut", "Walnut 3.5mm", "Walnut Mod", "Walnut Mod2" ]
 	},
 	{
    	"name":   "Gold Planar",
@@ -85,7 +85,7 @@
 	},
 	{
    	"name":   "Sony",
-    	"phones": [ "MDR-CD900ST", "MDR-MV1" ]
+    	"phones": [ "MDR-1AM2", "MDR-CD900ST", "MDR-MV1" ]
 	},
 	{
 		"name":   "Thieaudio",
