@@ -9,18 +9,18 @@ const init_phones = ["Antdroid v3 Target"],            // Optional. Which graphs
       alt_layout = true,                           // Toggle between classic and alt layouts
       alt_sticky_graph = true,                      // If active graphs overflows the viewport, does the graph scroll with the page or stick to the viewport?
       alt_animated = true,                         // Determines if new graphs are drawn with a 1-second animation, or appear instantly
-      alt_header = false,                           // Display a configurable header at the top of the alt layout
+      alt_header = true,                           // Display a configurable header at the top of the alt layout
       alt_header_new_tab = true,                    // Clicking alt_header links opens in new tab
       alt_tutorial = true,                         // Display a configurable frequency response guide below the graph
       alt_augment = false,                          // Display augment card in phone list, e.g. review sore, shop link
-      site_url = 'graph.html',                      // URL of your graph "homepage"
+      site_url = 'index.html',                      // URL of your graph "homepage"
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "AudioDiscourse.com | IEC-60138-4",                 // Optional. Watermark appears behind graphs
       watermark_image_url = "logo.png",   // Optional. If image file is in same directory as config, can be just the filename
       page_title = "Audio Discourse Graph Tool",                     // Optional. Appended to the page title if share URLs are enabled
       page_description = "View and compare frequency response graphs for earphones",
       accessories = false,                          // If true, displays specified HTML at the bottom of the page. Configure further below
-      externalLinksBar = true,                      // If true, displays row of pill-shaped links at the bottom of the page. Configure further below
+      externalLinksBar = false,                      // If true, displays row of pill-shaped links at the bottom of the page. Configure further below
       restricted = false,                           // Enables restricted mode. More restricted options below
       expandable = false,                           // Enables button to expand iframe over the top of the parent page
       expandableOnly = false,                       // Prevents iframe interactions unless the user has expanded it. Accepts "true" or "false" OR a pixel value; if pixel value, that is used as the maximum width at which expandableOnly is used
@@ -28,13 +28,13 @@ const init_phones = ["Antdroid v3 Target"],            // Optional. Which graphs
       darkModeButton = true,                        // Adds a "Dark Mode" button the main toolbar to let users set preference
       targetDashed = true,                         // If true, makes target curves dashed lines
       targetColorCustom = false,                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
-      labelsPosition = "default",                   // Up to four labels will be grouped in a specified corner. Accepts "top-left," bottom-left," "bottom-right," and "default"
+      labelsPosition = "bottom-left",                   // Up to four labels will be grouped in a specified corner. Accepts "top-left," bottom-left," "bottom-right," and "default"
       stickyLabels = true,                          // "Sticky" labels
       analyticsEnabled = true,                     // Enables Google Analytics 4 measurement of site usage
       extraEnabled = true,                          // Enable extra features
       extraUploadEnabled = true,                    // Enable upload function
       extraEQEnabled = true,                        // Enable parametic eq function
-      extraEQBands = 10,                            // Default EQ bands available
+      extraEQBands = 5,                            // Default EQ bands available
       extraEQBandsMax = 20,                         // Max EQ bands available
       extraToneGeneratorEnabled = true;             // Enable tone generator function
 
@@ -236,12 +236,28 @@ setupGraphAnalytics();
 
 
 // If alt_header is enabled, these are the items added to the header
-let headerLogoText = "Audio Discourse Graph Tool",
-    headerLogoImgUrl = "",
+let headerLogoText = "Audio Discourse",
+    headerLogoImgUrl = "ad-core-logo_cob.png",
     headerLinks = [
     {
-        name: "Sample",
-        url: "https://sample.com"
+        name: "| Audio Discourse Reviews |",
+        url: "https://www.audiodiscourse.com"
+    },
+    {
+        name: "| IEM Ranking List |",
+        url: "https://rankings.audiodiscourse.com"
+    },
+    {
+        name: "| IEM Graph Tool |",
+        url: "https://iems.audiodiscourse.com"
+    },
+    {
+        name: "| Headphones Ranking List |",
+        url: "https://www.audiodiscourse.com/p/antdroids-headphones-ranking-list.html"
+    },
+    {
+        name: "| Headphones Graph Tool |",
+        url: "https://headphones.audiodiscourse.com"
     }
 ];
 
