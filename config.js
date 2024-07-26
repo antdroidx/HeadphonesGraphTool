@@ -41,7 +41,7 @@ const init_phones = ["Antdroid v4 Target"],            // Optional. Which graphs
 
 // Specify which targets to display
 const targets = [
-{ type:"", files:["Antdroid v4","Harman 2018","ISO 11904-2 DF (Tilt-1dB Oct)","Harman In-Room","Harman 2013","In-Ear Fidelity","USOUND3V0 Optimum Hifi","Diffuse Field","Free Field",]}
+{ type:"", files:["Antdroid v4","Harman 2018","KEMAR DF (KB006x) 10dB Tilt","Harman In-Room","Harman 2013","In-Ear Fidelity","USOUND3V0 Optimum Hifi","Diffuse Field","Free Field",]}
 ];
 
 
