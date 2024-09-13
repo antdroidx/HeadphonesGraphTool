@@ -24,8 +24,12 @@
     	"phones": [ "Panda","x Sennheiser HD8XX"]
 	},
 	{
-		"name":   "Focal",
-			"phones": [ "Clear Mg Pro" ]
+	"name":   "FiiO",
+	"phones": [ "FT3" ]
+	},
+	{
+	"name":   "Focal",
+	"phones": [ "Clear Mg Pro" ]
 	},
 	{
    	"name":   "Emu",
